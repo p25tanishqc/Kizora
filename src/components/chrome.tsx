@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useCart } from './cart';
 import { collections } from '@/data/collections';
 import { SITE } from '@/data/site';
+import { go } from '@/lib/portable';
 
 export function PrototypeBar() {
   const [on, setOn] = useState(false);
@@ -99,7 +100,7 @@ export function Header() {
       </div>
       {search && (
         <div className="border-t border-line bg-cream">
-          <form className="wrap flex items-center gap-3 py-4" onSubmit={e => { e.preventDefault(); router.push(`/shop/?q=${encodeURIComponent(q.current?.value ?? '')}`); }}>
+          <form className="wrap flex items-center gap-3 py-4" onSubmit={e => { e.preventDefault(); go(`/shop/?q=${encodeURIComponent(q.current?.value ?? '')}`, router.push); }}>
             <label htmlFor="site-search" className="sr-only">Search products and ingredients</label>
             <input id="site-search" ref={q} placeholder="Search: aloe, rose, moringa, soap, heels…" className="flex-1 border-b border-ink bg-transparent py-2 text-lg outline-none placeholder:text-ink2/60" />
             <button className="btn">Search</button>

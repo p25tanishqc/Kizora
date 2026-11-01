@@ -1,3 +1,4 @@
+import { asset } from '@/lib/portable';
 // Product data for the Kizora prototype.
 // Source: live product pages on kizoraskincare.com, checked 1 November 2026.
 // Prices, sizes and ingredient lists are as published. Anything Kizora still needs to confirm
@@ -459,7 +460,7 @@ export const kits: Product[] = [
 export const allItems: Product[] = [...products, ...kits];
 export const bySlug = (slug: string) => allItems.find(p => p.slug === slug);
 export const img = (slug: string, v: 'main' | 'card' | 'detail' | 'studio' = 'main') =>
-  allItems.find(p => p.slug === slug)?.kind === 'kit' ? `/images/kits/${slug}.webp` : `/images/products/${slug}/${v}.webp`;
+  asset(allItems.find(p => p.slug === slug)?.kind === 'kit' ? `/images/kits/${slug}.webp` : `/images/products/${slug}/${v}.webp`);
 
 export const NEEDS: Record<Need, string> = {
   dryness: 'Dryness', oily: 'Oily & combination', dull: 'Dull-looking skin', sensitive: 'Sensitive skin',
