@@ -1,0 +1,47 @@
+import type { CollectionSlug } from './products';
+
+export interface Collection {
+  slug: CollectionSlug; name: string; group: 'Face' | 'Body' | 'Lips' | 'Hair' | 'Sets';
+  intro: string; title: string; description: string; image: string; tone: string;
+  replaces?: string; // old URL on the live site
+}
+
+export const collections: Collection[] = [
+  { slug: 'face-gels', name: 'Face gels', group: 'Face', tone: 'bg-paper',
+    intro: 'Three light aloe gels. All are 99% aloe leaf gel; they feel cool, sink in quickly and work on face and body.',
+    title: 'Aloe vera face gels | Light daily hydration | Kizora', description: 'Three 99% aloe leaf gels: plain, with vitamin E, or with rose oil. Light, for face and body.',
+    image: '/images/collections/face-gels.webp', replaces: '/product-category/moisturisers-gels/' },
+  { slug: 'face-mists', name: 'Face mists', group: 'Face', tone: 'bg-blush/40',
+    intro: 'Three mists for three kinds of day. Rose for comfort, tea tree for oily days, eucalyptus when it is hot and humid.',
+    title: 'Face mists: rose, tea tree, eucalyptus | Kizora', description: 'Three face mists with aloe juice. Rose for comfort, tea tree for oily skin, eucalyptus for hot days.',
+    image: '/images/collections/face-mists.webp', replaces: '/product-category/fragrance-mists/' },
+  { slug: 'oils', name: 'Oils', group: 'Face', tone: 'bg-sage-mist',
+    intro: 'Cold-pressed moringa seed oil for your face at night, and two herbal hair oils for a weekly scalp massage.',
+    title: 'Cold-pressed moringa oil and herbal hair oils | Kizora', description: 'Moringa seed oil for the face at night, and two herbal hair oils for scalp massage.',
+    image: '/images/collections/oils.webp', replaces: '/product-category/botanical-hair-oils/' },
+  { slug: 'bath-body', name: 'Soaps & bath', group: 'Body', tone: 'bg-paper',
+    intro: 'Natural soaps cured for 21 to 28 days, three handmade bathing bars, and a fig and vanilla body wash.',
+    title: 'Natural soaps, bathing bars and body wash | Kizora', description: 'Kuppaimeni, hibiscus and rose, tomato, ubtan, aloe and cow milk bars, plus a fig and vanilla shower wash.',
+    image: '/images/collections/soaps-bathing-bars.webp', replaces: '/product-category/bath-body/' },
+  { slug: 'hands-feet', name: 'Hands & feet', group: 'Body', tone: 'bg-butter/50',
+    intro: 'A thick ghee and shea foot butter for dry, rough heels. Use it at night with cotton socks.',
+    title: 'Ghee foot butter for dry heels | Kizora', description: 'Desi cow ghee, shea butter and four oils for dry, rough heels. Use at night with cotton socks.',
+    image: '/images/collections/hands-feet.webp' },
+  { slug: 'lip-care', name: 'Lip care', group: 'Lips', tone: 'bg-blush/40',
+    intro: 'Two ghee-based balms in tins: beetroot for a light tint by day, licorice and cocoa for a richer layer at night.',
+    title: 'Ghee lip balms: beetroot and licorice | Kizora', description: 'Two ghee lip balms. Beetroot for a soft daytime tint, licorice and cocoa for night.',
+    image: '/images/collections/lip-care.webp' },
+  { slug: 'hair', name: 'Hair', group: 'Hair', tone: 'bg-clay/30',
+    intro: 'Two herbal hair oils in a coconut, castor and sesame base, with a comb nozzle for a slow scalp massage.',
+    title: 'Herbal hair oils for scalp massage | Kizora', description: 'Red Onion Elixir and Bringa Brahmi Elixir: herbal hair oils for a weekly scalp massage.',
+    image: '/images/collections/hair.webp', replaces: '/product-category/botanical-hair-oils/' },
+  { slug: 'sets-hampers', name: 'Sets & kits', group: 'Sets', tone: 'bg-butter/40',
+    intro: 'Ritual kits made from our own products, priced at the sum of listed prices. Every kit clears the free-delivery line.',
+    title: 'Ritual kits and winter sets | Kizora', description: 'Morning and evening ritual kits and a winter night care set, from ₹820.',
+    image: '/images/collections/sets-hampers.webp' },
+  { slug: 'aloe-vera-essentials', name: 'Aloe vera essentials', group: 'Face', tone: 'bg-paper',
+    intro: 'Everything we make with aloe, from three light gels to an aloe bathing bar.',
+    title: 'Aloe vera essentials | Kizora', description: 'Three aloe gels and an aloe vera bathing bar.',
+    image: '/images/collections/aloe-vera-essentials.webp', replaces: '/product-category/aloe-vera-essentials/' },
+];
+export const collectionBySlug = (s: string) => collections.find(c => c.slug === s);

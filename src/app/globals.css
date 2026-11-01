@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --gutter: 20px; }
+@media (min-width: 768px) { :root { --gutter: 40px; } }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { @apply bg-cream text-ink font-sans antialiased; font-size: 16px; line-height: 1.65; }
+h1, h2, h3, h4 { @apply font-serif text-ink; font-weight: 500; letter-spacing: -0.01em; line-height: 1.15; }
+::selection { background: #EFE3B5; }
+:focus-visible { outline: 2px solid #A47E2F; outline-offset: 3px; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site; padding-left: var(--gutter); padding-right: var(--gutter); }
+  .eyebrow { @apply font-sans text-[12px] font-medium uppercase tracking-eyebrow text-sage-deep; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-[2px] bg-ink px-6 py-3.5 text-[13px] font-medium uppercase tracking-[0.12em] text-cream transition-colors hover:bg-dusk disabled:opacity-50; }
+  .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-[2px] border border-ink px-6 py-3.5 text-[13px] font-medium uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-cream; }
+  .btn-gold { @apply inline-flex items-center justify-center gap-2 rounded-[2px] bg-gold px-6 py-3.5 text-[13px] font-medium uppercase tracking-[0.12em] text-ink transition-colors hover:bg-gold-deep hover:text-cream; }
+  .link { @apply underline decoration-gold/60 underline-offset-4 hover:decoration-ink; }
+  .lead { @apply text-[17px] leading-relaxed text-ink2 md:text-lg; }
+  .hairline { @apply border-line; }
+  .chip { @apply inline-flex items-center rounded-full border border-line bg-paper px-3.5 py-1.5 text-[13.5px] text-ink transition-colors hover:border-ink; }
+  .chip[aria-pressed='true'] { @apply border-ink bg-ink text-cream; }
+  .prose-k p { @apply mb-5 text-[17px] leading-[1.8] text-ink/90; }
+  .prose-k h2 { @apply mb-3 mt-10 text-2xl; }
+}
+
+/* Items that need founder approval: invisible by default, highlighted when the prototype toggle is on */
+.needs-approval { text-decoration: none; }
+.show-approvals .needs-approval { background: #FCEFC7; box-shadow: 0 0 0 2px #FCEFC7; border-bottom: 1.5px dashed #B6462F; cursor: help; }
+.approval-list { display: none; }
+.show-approvals .approval-list { display: block; }
+
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .chev { transform: rotate(45deg); }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
