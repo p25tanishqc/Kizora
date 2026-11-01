@@ -1,12 +1,11 @@
 // Ingredient library. Generated from the transformation report's verified ingredient map (1 Nov 2026).
 // Tradition and evidence are kept separate; no claim goes beyond the cited source.
-export interface Ingredient { slug: string; name: string; localName: string; inci: string; group: string; what: string; tradition: string; evidence: string; how: string; concerns: string; limits: string; products: string[]; source: { url: string; title: string } | null }
+export interface Ingredient { slug: string; name: string; localName: string; listedAs: string; group: string; what: string; tradition: string; evidence: string; how: string; concerns: string; limits: string; products: string[]; source: { url: string; title: string } | null }
 export const ingredients: Ingredient[] = [
  {
   "slug": "aloe-vera",
   "name": "Aloe vera",
   "localName": "Ghritkumari",
-  "inci": "Aloe Barbadensis Leaf Juice / Leaf Extract (site lists 'Aloe Barbadensis Leaf Gel'; confirm INCI)",
   "group": "Hydrating",
   "what": "The clear gel inside the leaves of the aloe plant, known in many Indian homes as ghritkumari.",
   "tradition": "Used at home for generations on minor sunburn and dry skin.",
@@ -28,13 +27,13 @@ export const ingredients: Ingredient[] = [
   "source": {
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2763764/",
    "title": "Surjushe et al., Aloe vera: a short review, Indian J Dermatol 2008"
-  }
+  },
+  "listedAs": "Aloe Barbadensis Leaf Gel"
  },
  {
   "slug": "rose",
   "name": "Rose (Damask rose)",
   "localName": "Gulab",
-  "inci": "Rosa Damascena Flower Water; Rosa Damascena Flower Oil",
   "group": "Plant waters",
   "what": "Rose water is the fragrant water collected when rose petals are steam-distilled; rose oil is the concentrated oil.",
   "tradition": "Gulab jal has long been used in Indian homes as a face freshener.",
@@ -50,30 +49,30 @@ export const ingredients: Ingredient[] = [
   "source": {
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3586833/",
    "title": "Boskabady et al., Rosa damascena review, Iran J Basic Med Sci 2011"
-  }
+  },
+  "listedAs": "Rosa Damascena Flower Water; Rose Essential Oil"
  },
  {
   "slug": "moringa",
   "name": "Moringa seed oil",
   "localName": "Sahjan, drumstick",
-  "inci": "Moringa Oleifera Seed Oil",
   "group": "Oils & butters",
   "what": "Oil pressed from the seeds of the drumstick tree (sahjan). Our seeds are dried in the sun before they are pressed.",
   "tradition": "Drumstick is a familiar kitchen plant across India; the seed oil has a long history of cosmetic use.",
-  "evidence": "A light, stable oil, high in oleic acid according to commonly published compositions (confirm with supplier's certificate of analysis). It works as an emollient: it softens and smooths. Claims about elasticity or ageing are not established.",
+  "evidence": "A light, stable oil, high in oleic acid according to commonly published compositions. It works as an emollient: it softens and smooths. Claims about elasticity or ageing are not established.",
   "how": "Fills the gaps between surface skin cells so skin feels softer and less dry.",
   "concerns": "Dry skin, especially at night and in winter.",
   "limits": "Use 2 to 3 drops; oily or acne-prone skin may prefer less.",
   "products": [
    "cold-pressed-moringa-oil"
   ],
-  "source": null
+  "source": null,
+  "listedAs": "Moringa Oleifera Seed Oil"
  },
  {
   "slug": "turmeric",
   "name": "Turmeric (haldi)",
   "localName": "Haldi",
-  "inci": "Curcuma Longa Root Powder (confirm)",
   "group": "Traditional Indian",
   "what": "The dried, ground root of the turmeric plant.",
   "tradition": "Central to ubtan and the haldi ceremony before Indian weddings.",
@@ -87,13 +86,13 @@ export const ingredients: Ingredient[] = [
   "source": {
    "url": "https://pubmed.ncbi.nlm.nih.gov/27213821/",
    "title": "Vaughn et al., Turmeric and skin health, Phytother Res 2016"
-  }
+  },
+  "listedAs": "Turmeric"
  },
  {
   "slug": "tea-tree",
   "name": "Tea tree leaf water",
   "localName": "",
-  "inci": "Melaleuca Alternifolia Leaf Water (confirm)",
   "group": "Plant waters",
   "what": "The water left after distilling tea tree leaves (a hydrosol), not the concentrated tea tree oil.",
   "tradition": "Tea tree is an Australian plant; its oil became popular worldwide for oily skin.",
@@ -107,13 +106,13 @@ export const ingredients: Ingredient[] = [
   "source": {
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1360273/",
    "title": "Carson et al., Tea tree oil review, Clin Microbiol Rev 2006"
-  }
+  },
+  "listedAs": "Tea Tree Leaf Water"
  },
  {
   "slug": "eucalyptus-witch-hazel",
   "name": "Eucalyptus water and witch hazel",
   "localName": "Nilgiri",
-  "inci": "Eucalyptus Globulus Leaf Water (species to confirm); Hamamelis Virginiana Water (confirm)",
   "group": "Plant waters",
   "what": "Two plant waters in the Eucalyptus Soothing Mist: eucalyptus for a cool, fresh smell, and witch hazel, traditionally used as a mild astringent.",
   "tradition": "Witch hazel water is a long-standing toner ingredient.",
@@ -124,13 +123,13 @@ export const ingredients: Ingredient[] = [
   "products": [
    "eucalyptus-soothing-mist"
   ],
-  "source": null
+  "source": null,
+  "listedAs": "Eucalyptus Hydrosol; Witch Hazel"
  },
  {
   "slug": "kuppaimeni",
   "name": "Kuppaimeni (Indian nettle)",
   "localName": "Indian nettle",
-  "inci": "Acalypha Indica Extract (confirm)",
   "group": "Traditional Indian",
   "what": "A common wayside plant, called kuppaimeni in Tamil.",
   "tradition": "Used in Siddha and household remedies, including on skin.",
@@ -144,13 +143,13 @@ export const ingredients: Ingredient[] = [
   "source": {
    "url": "https://phcogrev.com/node/474",
    "title": "Review of Acalypha indica, Pharmacognosy Reviews"
-  }
+  },
+  "listedAs": "Kuppaimeni extract"
  },
  {
   "slug": "desi-cow-ghee",
   "name": "Desi cow ghee",
   "localName": "Ghee",
-  "inci": "No standard INCI listed; founder to confirm label name",
   "group": "Oils & butters",
   "what": "Clarified butter made from cow's milk.",
   "tradition": "Applied to cracked heels and dry lips in many Indian homes.",
@@ -163,13 +162,13 @@ export const ingredients: Ingredient[] = [
    "beetroot-ghee-lip-balm",
    "licorice-cocoa-ghee-lip-balm"
   ],
-  "source": null
+  "source": null,
+  "listedAs": "Desi Cow Ghee"
  },
  {
   "slug": "shea-butter",
   "name": "Shea butter",
   "localName": "",
-  "inci": "Butyrospermum Parkii Butter",
   "group": "Oils & butters",
   "what": "A plant butter from the nut of the African shea tree.",
   "tradition": "Long used in West Africa on skin and hair.",
@@ -184,13 +183,13 @@ export const ingredients: Ingredient[] = [
    "avocado-olive-ghee-foot-butter",
    "beetroot-ghee-lip-balm"
   ],
-  "source": null
+  "source": null,
+  "listedAs": "Shea Butter"
  },
  {
   "slug": "vitamin-e",
   "name": "Vitamin E",
   "localName": "",
-  "inci": "Tocopheryl Acetate (gel); Tocopherol (soap, confirm)",
   "group": "Hydrating",
   "what": "A fat-soluble antioxidant; the acetate form is common in cosmetics.",
   "tradition": "Not a traditional ingredient; a vitamin widely used in modern skin care.",
@@ -205,13 +204,13 @@ export const ingredients: Ingredient[] = [
   "source": {
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4976416/",
    "title": "Keen & Hassan, Vitamin E in dermatology, IDOJ 2016"
-  }
+  },
+  "listedAs": "Vitamin E Acetate; Vitamin E Oil"
  },
  {
   "slug": "licorice",
   "name": "Licorice root (mulethi)",
   "localName": "Mulethi",
-  "inci": "Glycyrrhiza Glabra Root Extract (confirm)",
   "group": "Traditional Indian",
   "what": "Extract of licorice root, known in India as mulethi.",
   "tradition": "Used in home remedies and Ayurvedic preparations.",
@@ -222,13 +221,13 @@ export const ingredients: Ingredient[] = [
   "products": [
    "licorice-cocoa-ghee-lip-balm"
   ],
-  "source": null
+  "source": null,
+  "listedAs": "Licorice extract"
  },
  {
   "slug": "bhringraj-brahmi-amla",
   "name": "Bhringraj, brahmi and amla",
   "localName": "",
-  "inci": "Eclipta Prostrata, Bacopa Monnieri, Phyllanthus Emblica extracts (confirm)",
   "group": "Traditional Indian",
   "what": "Three herbs traditionally used in Indian hair oils.",
   "tradition": "Classic ingredients in home-made hair oils for scalp massage.",
@@ -240,7 +239,8 @@ export const ingredients: Ingredient[] = [
    "red-onion-hair-oil",
    "bringa-brahmi-hair-oil"
   ],
-  "source": null
+  "source": null,
+  "listedAs": "Bhringraj, Brahmi, Amla"
  }
 ];
 export const otherIngredients: { name: string; products: string[] }[] = [

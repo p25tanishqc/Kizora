@@ -15,7 +15,7 @@ export default function Returns() {
         <p><Confirm>Message us on WhatsApp with your order number and a photo of the product and its packaging, within the time stated in our full policy. We will replace it or refund you.</Confirm></p>
         <h2>Cancellations</h2>
         <p><Confirm>You can cancel an order before it is dispatched by messaging us.</Confirm></p>
-        <p className="text-[15px] text-ink2">This is a plain-language summary for the prototype. The full policy needs a legal review before launch, and the drafting note currently visible on the live policy page must be removed. <Link href="/contact/" className="link">Contact us</Link>.</p>
+        <p className="text-[15px] text-ink2">For anything not covered here, <Link href="/contact/" className="link">contact us</Link>.</p>
       </div>
     </section>
   );

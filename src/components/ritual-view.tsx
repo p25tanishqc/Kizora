@@ -9,7 +9,9 @@ export function RitualView({ which }: { which: 'morning' | 'evening' }) {
   const kit = bySlug(r.kit)!;
   const dark = which === 'evening';
   const other = which === 'morning' ? 'evening' : 'morning';
-  const alt = which === 'morning' ? bySlug('morning-ritual-kit-oily-skin')! : bySlug('complete-evening-ritual')!;
+  const alt = bySlug('morning-ritual-kit-oily-skin')!;
+  const full = bySlug('complete-evening-ritual')!;
+  const inKit = (slug?: string) => !!slug && kit.components!.includes(slug);
   return (
     <>
       <section className={dark ? 'bg-dusk text-cream' : 'bg-butter/50'}>
@@ -19,10 +21,20 @@ export function RitualView({ which }: { which: 'morning' | 'evening' }) {
             <p className={`eyebrow mt-8 ${dark ? '!text-gold' : ''}`}>{r.eyebrow}</p>
             <h1 className={`mt-3 text-[46px] md:text-[62px] ${dark ? '!text-cream' : ''}`}>{r.title}</h1>
             <p className={`mt-5 max-w-md text-[17px] leading-relaxed ${dark ? 'text-cream/80' : 'text-ink2'}`}>{r.intro}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#kit" className={dark ? 'btn-gold' : 'btn'}>Add the kit · {inr(kit.price)}</a>
-              <Link href={`/rituals/${other}/`} className={dark ? 'inline-flex items-center px-2 text-[13px] uppercase tracking-[0.12em] text-cream underline underline-offset-4' : 'btn-ghost'}>See the {other} ritual</Link>
-            </div>
+            {dark ? (
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#kit" className="btn-gold">Evening essentials · 2 products · {inr(kit.price)}</a>
+                <a href="#kit" className="inline-flex items-center justify-center rounded-[2px] border border-cream/60 px-6 py-3.5 text-[13px] font-medium uppercase tracking-[0.12em] text-cream hover:bg-cream hover:text-ink">Complete ritual · 5 products · {inr(full.price)}</a>
+              </div>
+            ) : (
+              <div className="mt-8">
+                <div className="flex flex-wrap gap-3">
+                  <a href="#kit" className="btn">Add the kit · {inr(kit.price)}</a>
+                  <Link href={`/rituals/${other}/`} className="btn-ghost">See the {other} ritual</Link>
+                </div>
+                <p className="mt-3 text-[14px] text-ink2">Includes mist + gel. The lip balm is optional.</p>
+              </div>
+            )}
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={r.image} alt={`${r.title}: the products, together`} fetchPriority="high" width={1800} height={1200} className="-mx-[var(--gutter)] aspect-[3/2] w-[calc(100%+2*var(--gutter))] object-cover md:mx-0 md:w-full" />
@@ -46,7 +58,7 @@ export function RitualView({ which }: { which: 'morning' | 'evening' }) {
                     <img src={img(p.slug, 'card')} alt={p.name} loading="lazy" className="h-full w-full object-cover" />
                   </Link>
                   <div className="col-span-3 sm:col-span-1 sm:col-start-3">
-                    <p className="eyebrow">{s.role}{s.optional && ' · optional'}</p>
+                    <p className="eyebrow">{s.role}{inKit(s.slug) ? <span className="ml-2 rounded-sm bg-butter px-1.5 py-0.5 text-[10.5px] text-ink">{which === 'morning' ? 'In the kit' : 'In evening essentials'}</span> : <span className="text-ink2"> · {which === 'morning' ? 'optional, not in the kit' : 'in the complete ritual'}</span>}</p>
                     <h3 className="mt-1.5 text-[24px]"><Link href={`/products/${p.slug}/`} className="hover:underline hover:decoration-gold hover:underline-offset-4">{p.name}</Link></h3>
                     <p className="mt-2">{s.how}</p>
                     <p className="mt-1.5 text-[14.5px] text-ink2">{s.why}</p>
@@ -73,21 +85,32 @@ export function RitualView({ which }: { which: 'morning' | 'evening' }) {
         <aside id="kit" className="scroll-mt-28 lg:sticky lg:top-28 lg:self-start">
           <div className="overflow-hidden rounded-[3px] bg-ink text-cream">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={img(kit.slug)} alt={kit.name} loading="lazy" className="aspect-[4/3] w-full object-cover object-[50%_70%]" />
+            <img src={img(kit.slug)} alt={`${kit.name}: ${kit.components!.map(s => bySlug(s)!.name).join(' and ')}`} loading="lazy" className="aspect-[4/3] w-full object-cover object-[50%_70%]" />
             <div className="p-7">
-              <p className="eyebrow !text-gold">The kit</p>
+              <p className="eyebrow !text-gold">{which === 'morning' ? 'The kit · 2 essentials' : 'Option 1 · 2 products'}</p>
               <h2 className="mt-2 text-[28px] !text-cream">{kit.name}</h2>
               <ul className="mt-4 divide-y divide-cream/15 text-[15px]">
                 {kit.components!.map(s => <li key={s} className="flex justify-between py-2.5"><span>{bySlug(s)!.name}</span><span>{inr(bySlug(s)!.price)}</span></li>)}
               </ul>
               <div className="my-5 flex justify-between font-serif text-[24px]"><span>Total</span><span>{inr(kit.price)}</span></div>
-              <AddKit slug={kit.slug} price={kit.price} />
-              <p className="mt-4 text-[12.5px] text-cream/65"><Confirm>Listed prices; any kit discount needs approval. Qualifies for free delivery above ₹799.</Confirm></p>
+              <AddKit slug={kit.slug} price={kit.price} label={`Add the kit · ${inr(kit.price)}`} />
+              <p className="mt-4 text-[13px] text-cream/70">{which === 'morning' ? 'Add a lip balm separately if you like. ' : ''}<Confirm>Qualifies for free delivery on orders above ₹799.</Confirm></p>
+              {which === 'evening' && (
+                <div className="mt-7 border-t border-cream/20 pt-6">
+                  <p className="eyebrow !text-gold">Option 2 · 5 products</p>
+                  <h3 className="mt-2 text-[22px] !text-cream">{full.name}</h3>
+                  <p className="mt-2 text-[14px] text-cream/75">Every step above: {full.components!.map(s => bySlug(s)!.name).join(', ')}.</p>
+                  <div className="my-4 flex justify-between font-serif text-[20px]"><span>Total</span><span>{inr(full.price)}</span></div>
+                  <AddKit slug={full.slug} price={full.price} label={`Add all 5 · ${inr(full.price)}`} />
+                </div>
+              )}
             </div>
           </div>
-          <Link href={`/products/${alt.slug}/`} className="mt-4 flex items-center justify-between rounded-[3px] border border-line bg-paper p-5 text-[15px] hover:border-ink">
-            <span><span className="block text-[12px] uppercase tracking-[0.12em] text-ink2">Also</span>{alt.name}</span><span>{inr(alt.price)} →</span>
-          </Link>
+          {which === 'morning' && (
+            <Link href={`/products/${alt.slug}/`} className="mt-4 flex items-center justify-between rounded-[3px] border border-line bg-paper p-5 text-[15px] hover:border-ink">
+              <span><span className="block text-[12px] uppercase tracking-[0.12em] text-ink2">Oily skin?</span>{alt.name}</span><span>{inr(alt.price)} →</span>
+            </Link>
+          )}
         </aside>
       </section>
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'HowTo', name: r.title, step: r.steps.map(s => ({ '@type': 'HowToStep', name: `${s.role}: ${s.title}`, text: s.how })) }} />

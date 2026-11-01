@@ -11,7 +11,7 @@ export const dynamicParams = false;
 export function generateStaticParams() { return allItems.map(p => ({ slug: p.slug })); }
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const p = bySlug(params.slug); if (!p) return {};
-  const title = `${p.name}${p.kind === 'product' ? `, ${p.size}` : ''} | Kizora`;
+  const title = `${p.name}${p.kind === 'product' && p.size ? `, ${p.size}` : ''} | Kizora`;
   const description = `${p.oneLine} ${p.forWhom}. ${inr(p.price)}.`.slice(0, 158);
   return { title, description, alternates: { canonical: `/products/${p.slug}/` }, openGraph: { title, description, images: [img(p.slug)] } };
 }
@@ -36,8 +36,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         <div>
           <p className="eyebrow">{isKit ? 'Ritual kit' : col?.name}{p.ritual && ` · ${p.ritual.map(r => r[0].toUpperCase() + r.slice(1)).join(' & ')} ritual`}</p>
           <h1 className="mt-3 text-[38px] leading-tight md:text-[48px]">{p.name}</h1>
-          <p className="mt-2 text-[15px] text-ink2">{p.size} · <a href="#reviews" className="underline decoration-line underline-offset-4">No reviews yet</a></p>
-          <p className="mt-5 font-serif text-[30px]">{inr(p.price)} <span className="font-sans text-[13px] text-ink2">incl. of all taxes{isKit && <> · <Confirm>sum of listed prices</Confirm></>}</span></p>
+          <p className="mt-2 text-[15px] text-ink2">{p.size ? `${p.size} · ` : ''}<a href="#reviews" className="underline decoration-line underline-offset-4">No reviews yet</a></p>
+          <p className="mt-5 font-serif text-[30px]">{inr(p.price)} <span className="font-sans text-[13px] text-ink2">incl. of all taxes{isKit && <> · {p.components!.length} products at their listed prices</>}</span></p>
           <p className="mt-5 text-[17px] leading-relaxed">{p.oneLine}</p>
 
           <dl className="mt-7 grid grid-cols-2 gap-px overflow-hidden rounded-[3px] border border-line bg-line text-[14.5px]">
@@ -48,11 +48,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           {p.contains && <p className="mt-4 rounded-[3px] bg-blush/50 px-4 py-3 text-[14px]"><b className="font-medium">Contains:</b> {p.contains.replace('Contains ', '')}</p>}
 
           <div className="mt-7"><BuyBox slug={p.slug} price={p.price} name={p.name} /></div>
-          <ul className="mt-5 space-y-1.5 text-[13.5px] text-ink2">
-            <li>✓ <Confirm>Dispatched in 1 to 3 working days from Madhya Pradesh</Confirm></li>
-            <li>✓ UPI, cards, net banking and cash on delivery</li>
-            <li>✓ <Confirm>Free delivery above ₹799</Confirm>{p.price < 799 && <> · <Link href="/collections/sets-hampers/" className="underline">kits qualify</Link></>}</li>
-          </ul>
+          <p className="mt-5 text-[13.5px] text-ink2">✓ <Confirm>Free delivery on orders above ₹799</Confirm>{p.price < 799 && <> · <Link href="/collections/sets-hampers/" className="underline">kits qualify</Link></>}</p>
 
           <div className="mt-9 border-t border-line">
             <details open className="border-b border-line py-5">
@@ -75,8 +71,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               </details>
             ) : (
               <details className="border-b border-line py-5">
-                <summary className="flex justify-between font-serif text-[20px]">Full ingredients<span className="chev transition-transform">+</span></summary>
-                <p className="mt-3 text-[15px] text-ink/90">{p.fullIngredients.startsWith('Full ingredient list to be published') ? <Confirm>{p.fullIngredients}</Confirm> : p.fullIngredients}</p>
+                <summary className="flex justify-between font-serif text-[20px]">{p.ingredientsComplete === false ? 'Key ingredients' : 'Ingredients'}<span className="chev transition-transform">+</span></summary>
+                <p className="mt-3 text-[15px] text-ink/90">{p.fullIngredients}</p>
                 {ings.length > 0 && <p className="mt-3 text-[14px] text-ink2">Learn more: {ings.map((g, i) => <span key={g!.slug}>{i > 0 && ', '}<Link href={`/ingredients/${g!.slug}/`} className="link">{g!.name}</Link></span>)}</p>}
               </details>
             )}
@@ -85,12 +81,6 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               <p className="mt-3 text-ink/90">Made in small batches at our partner&apos;s unit near Kanha National Park, Madhya Pradesh, with few machines. <Link href="/how-its-made/" className="link">Read more</Link>.</p>
             </details>
           </div>
-          {p.approvals && p.approvals.length > 0 && (
-            <div className="approval-list mt-6 rounded-[3px] border border-dashed border-[#B6462F] bg-[#FCEFC7]/60 p-4 text-[13.5px]">
-              <p className="font-medium">To confirm with the founder</p>
-              <ul className="mt-1 list-disc pl-5">{p.approvals.map(a => <li key={a}>{a}</li>)}</ul>
-            </div>
-          )}
         </div>
       </section>
 
@@ -105,8 +95,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       <section id="reviews" className="wrap py-10">
         <div className="rounded-[3px] border border-line bg-paper p-8 md:p-10">
           <h2 className="text-[28px]">Reviews</h2>
-          <p className="mt-2 max-w-2xl text-ink2">Only verified buyers can review, and every review is published, including critical ones. This product has no website reviews yet.</p>
-          <button className="btn-ghost mt-6" disabled title="Available on the live store">Write a review</button>
+          <p className="mt-2 max-w-2xl text-ink2">No reviews yet. Questions before choosing? <a href="https://wa.me/919625905995" target="_blank" rel="noopener noreferrer" className="link">Speak with our team on WhatsApp</a>.</p>
         </div>
       </section>
 

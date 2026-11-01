@@ -4,11 +4,10 @@ import { bySlug, inr } from '@/data/products';
 import { ingredients } from '@/data/ingredients';
 import { articles, rituals } from '@/data/site';
 import { Confirm, ProductGrid, SectionHead } from '@/components/ui';
-import { Newsletter } from '@/components/newsletter';
 
 export const metadata: Metadata = {
   title: 'Kizora Skincare | Slow-made skincare from near Kanha, MP',
-  description: 'Small-batch aloe gels, face mists, oils and natural soaps made near Kanha, Madhya Pradesh. Simple morning and evening rituals with full ingredient lists.',
+  description: 'Small-batch aloe gels, face mists, oils and natural soaps made near Kanha, Madhya Pradesh. Simple morning and evening rituals, with ingredients explained clearly.',
   alternates: { canonical: '/' },
 };
 
@@ -50,7 +49,7 @@ export default function Home() {
       <section aria-label="Why Kizora" className="border-y border-line bg-butter/60">
         <ul className="wrap grid grid-cols-2 gap-y-3 py-5 text-[13.5px] md:flex md:justify-between md:text-[14px]">
           <li>✦ Soaps cured 21 to 28 days</li>
-          <li>✦ Full ingredient lists</li>
+          <li>✦ Ingredients explained clearly</li>
           <li>✦ Made near Kanha, MP</li>
           <li>✦ <Confirm>Free delivery above ₹799</Confirm></li>
         </ul>
@@ -59,7 +58,7 @@ export default function Home() {
       {/* RITUALS */}
       <section className="wrap py-20 md:py-28">
         <SectionHead eyebrow="Not routines. Rituals." title="A ritual is a few steps you actually keep doing.">
-          Ours are short. Light in the morning, slower at night, and every step is a product we make.
+          A little care to begin your day, a little calm to end it. Simple rituals, thoughtfully made by us.
         </SectionHead>
         <div className="grid gap-6 lg:grid-cols-2">
           {[{ r: rituals.morning, k: mk, tone: 'bg-butter/50', btn: 'btn' }, { r: rituals.evening, k: ek, tone: 'bg-dusk text-cream', btn: 'btn-gold' }].map(({ r, k, tone, btn }) => (
@@ -70,12 +69,19 @@ export default function Home() {
                 <p className={`eyebrow ${r.slug === 'evening' ? 'text-gold' : ''}`}>{r.eyebrow}</p>
                 <h3 className={`mt-3 text-[30px] md:text-[36px] ${r.slug === 'evening' ? 'text-cream' : ''}`}>{r.slug === 'morning' ? 'Mist, hydrate, lips.' : 'Cleanse, mist, nourish.'}</h3>
                 <ol className="mt-5 space-y-1.5 text-[15px]">
-                  {r.steps.filter(s => s.slug).map(s => <li key={s.n} className="flex gap-3"><span className="w-5 font-serif italic text-gold">{s.n}</span>{s.title}</li>)}
+                  {r.steps.filter(s => s.slug).map(s => (
+                    <li key={s.n} className="flex gap-3"><span className="w-5 font-serif italic text-gold">{s.n}</span>
+                      <span>{s.title}{!k.components!.includes(s.slug!) && <span className="opacity-60"> · optional</span>}</span></li>
+                  ))}
                 </ol>
-                <div className="mt-7 flex flex-wrap items-center gap-4">
-                  <Link href={`/rituals/${r.slug}/`} className={btn}>See the {r.slug} ritual</Link>
-                  <span className="text-[14px] opacity-80">{k.name} · {inr(k.price)}</span>
+                <div className={`mt-6 border-t pt-5 text-[14px] ${r.slug === 'evening' ? 'border-cream/20' : 'border-ink/15'}`}>
+                  {r.slug === 'morning' ? (
+                    <p><b className="font-medium">Morning Ritual Kit · 2 essentials · {inr(k.price)}</b><br /><span className="opacity-80">Rose Hydrating Mist + Pure Aloe Vera Gel. Add a lip balm separately if you like.</span></p>
+                  ) : (
+                    <p><b className="font-medium">Evening essentials · 2 products · {inr(k.price)}</b><br /><span className="opacity-80">Complete evening ritual · 5 products · {inr(bySlug('complete-evening-ritual')!.price)}</span></p>
+                  )}
                 </div>
+                <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2"><Link href={`/rituals/${r.slug}/`} className={btn}>See the {r.slug} ritual</Link>{r.slug === 'morning' && <span className="text-[14px] opacity-80">Includes mist + gel</span>}</div>
               </div>
             </article>
           ))}
@@ -111,7 +117,7 @@ export default function Home() {
           <h2 className="mt-3 text-[34px] md:text-[44px]">Why our soaps take a month.</h2>
           <p className="lead mt-5">Our partner, trained in botany, runs a small unit near Kanha National Park with people from the villages around it. Things are made with few machines, in small batches, and they take the time they take.</p>
           <dl className="mt-10 grid grid-cols-3 gap-6 border-t border-line pt-8">
-            {[['21–28', 'days a natural soap cures before packing'], ['Sun', 'dried moringa seed, then slow pressing'], ['19', 'products, each with a full ingredient list']].map(([n, t]) => (
+            {[['21–28', 'days a natural soap cures before packing'], ['Sun', 'dried moringa seed, then slow pressing'], ['12', 'ingredients explained in our library']].map(([n, t]) => (
               <div key={t}><dt className="font-serif text-[34px] text-gold-deep md:text-[42px]">{n}</dt><dd className="mt-1 text-[13.5px] leading-snug text-ink2">{t}</dd></div>
             ))}
           </dl>
@@ -120,7 +126,6 @@ export default function Home() {
         <figure className="order-1 md:order-2">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/collections/soaps-bathing-bars.webp" alt="Kizora natural soaps and ubtan bathing bar" loading="lazy" className="aspect-[4/3.2] w-full rounded-[3px] object-cover object-[75%_60%]" />
-          <figcaption className="mt-2 text-[12.5px] italic text-ink2"><Confirm note="Replace with a real photo of soaps curing at the unit">Real product photos. A photo of the curing racks at the unit will replace this.</Confirm></figcaption>
         </figure>
       </section>
 
@@ -164,7 +169,7 @@ export default function Home() {
             <p className="eyebrow">For the colder months</p>
             <h2 className="mt-3 text-[34px] md:text-[44px]">The Winter Night Care Set.</h2>
             <p className="lead mt-5">Cow Milk Bathing Bar and the Avocado &amp; Olive Ghee Foot Butter. A small, practical set for dry skin and rough heels, and the one many customers send to their parents.</p>
-            <p className="mt-6 font-serif text-[26px]">{inr(ws.price)} <span className="font-sans text-[13px] text-ink2"><Confirm>sum of listed prices</Confirm></span></p>
+            <p className="mt-6 font-serif text-[26px]">{inr(ws.price)} <span className="font-sans text-[13px] text-ink2">2 products at their listed prices</span></p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/products/winter-night-care-set/" className="btn">See the set</Link>
               <Link href="/collections/sets-hampers/" className="btn-ghost">All sets & kits</Link>
@@ -180,7 +185,7 @@ export default function Home() {
           Our older customers keep reordering the foot butter for dry, cracked heels.
         </p>
         <p className="mt-4 text-[14px] text-ink2"><Confirm note="Founder-reported; replace with verified reviews once collected">As shared by our founder, Bikash</Confirm></p>
-        <p className="mx-auto mt-10 max-w-xl text-[14.5px] text-ink2">Verified reviews from website buyers will appear on each product page. Kizora Skincare is rated <Confirm note="Observed on Google Business Profile, 1 Nov 2026">5.0 from 17 Google reviews</Confirm>.</p>
+        <p className="mx-auto mt-10 max-w-xl text-[14.5px] text-ink2">Questions before choosing? <a href="https://wa.me/919625905995" target="_blank" rel="noopener noreferrer" className="link">Speak with our team on WhatsApp</a>.</p>
       </section>
 
       {/* JOURNAL */}
@@ -201,7 +206,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Newsletter />
     </>
   );
 }

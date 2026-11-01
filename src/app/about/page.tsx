@@ -22,27 +22,25 @@ export default function About() {
               <p>Today that unit makes what we sell. Bikash looks after the brand from Gurugram; his partner looks after the making and the quality.</p>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-3">
-            {['The founder', 'Our botanist partner', 'The unit near Kanha (with consent of people shown)'].map((t, k) => (
-              <div key={t} className={`flex items-center justify-center rounded-[3px] border border-dashed border-line bg-[repeating-linear-gradient(45deg,#F1EADD,#F1EADD_10px,#ECE3D3_10px,#ECE3D3_20px)] p-4 text-center text-[12px] uppercase tracking-[0.1em] text-ink2 ${k === 2 ? 'col-span-2 aspect-[2/1]' : 'aspect-[4/5]'}`}>
-                <span className="needs-approval" title="Real photo needed">Real photo: {t}</span>
-              </div>
-            ))}
-          </div>
+          <figure>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/collections/soaps-bathing-bars.webp" alt="Kizora natural soaps and ubtan bathing bar" className="aspect-[4/3.4] w-full rounded-[3px] object-cover object-[72%_60%]" />
+            <figcaption className="mt-2 text-[13px] text-ink2">Our natural soaps and bathing bars.</figcaption>
+          </figure>
         </div>
       </section>
 
       <section className="bg-ink py-20 text-center text-cream">
         <div className="wrap max-w-3xl">
-          <p className="font-serif text-[30px] italic leading-snug text-cream md:text-[40px]">“No compromise on quality. Follow every rule and keep every document. Build around a strong idea, and build it to last.”</p>
-          <p className="mt-6 text-[12.5px] uppercase tracking-[0.18em] text-gold"><Confirm note="Paraphrased from the founder interview; approve exact words">Bikash, founder · his three principles, paraphrased</Confirm></p>
+          <p className="font-serif text-[30px] italic leading-snug text-cream md:text-[40px]">No compromise on quality. Follow every rule and keep every document. Build around a strong idea, and build it to last.</p>
+          <p className="mt-6 text-[12.5px] uppercase tracking-[0.18em] text-gold"><Confirm note="Paraphrased from the founder interview; approve exact words">The three rules our founder, Bikash, works by</Confirm></p>
         </div>
       </section>
 
       <section className="wrap grid gap-12 py-20 md:grid-cols-3">
         {[
           ['Slow, on purpose', 'Few machines, wooden and stone tools, oils extracted slowly. Our natural soaps cure for 21 to 28 days, and moringa seeds are dried in the sun before pressing.'],
-          ['Clean, not loud', 'We make clean skincare and say plainly what is in it. We do not call our products Ayurvedic or organic while those certifications are still in process.'],
+          ['Clean, not loud', 'We make clean skincare and explain what is in it. We do not call our products Ayurvedic or organic while those certifications are still in process.'],
           ['A few products, each with a job', 'Nineteen products today, chosen so that a morning or evening ritual stays short. New ones arrive with the seasons.'],
         ].map(([h, t]) => <div key={h} className="border-t border-gold pt-6"><h2 className="text-[26px]">{h}</h2><p className="mt-3 text-ink2">{t}</p></div>)}
       </section>

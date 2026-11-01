@@ -8,27 +8,29 @@ import { SITE } from '@/data/site';
 import { go } from '@/lib/portable';
 
 export function PrototypeBar() {
-  const [on, setOn] = useState(false);
+  // Review mode (highlights items awaiting founder approval) is switched on from /prototype-notes/ only.
   useEffect(() => {
-    try { if (sessionStorage.getItem('kz-approvals') === '1') setOn(true); } catch { /* ignore */ }
+    try { document.documentElement.classList.toggle('show-approvals', sessionStorage.getItem('kz-approvals') === '1'); } catch { /* ignore */ }
   }, []);
-  useEffect(() => {
-    document.documentElement.classList.toggle('show-approvals', on);
-    try { sessionStorage.setItem('kz-approvals', on ? '1' : '0'); } catch { /* ignore */ }
-  }, [on]);
   return (
     <div className="bg-[#2B231F] text-[12px] text-cream/85">
       <div className="wrap flex flex-wrap items-center justify-between gap-x-4 gap-y-1 py-1.5">
-        <span><b className="font-medium text-gold">Prototype preview</b><span className="hidden sm:inline"> · proposed redesign, not the live store</span> · no orders taken</span>
-        <span className="flex items-center gap-4">
-          <button onClick={() => setOn(v => !v)} aria-pressed={on} className="underline decoration-cream/40 underline-offset-2 hover:text-cream">
-            {on ? 'Hide' : 'Show'} <span className="hidden sm:inline">items </span>to confirm
-          </button>
-          <Link href="/prototype-notes/" className="underline decoration-cream/40 underline-offset-2 hover:text-cream">What changed</Link>
-        </span>
+        <span><b className="font-medium text-gold">Prototype preview</b> · Orders are not being processed.</span>
+        <Link href="/prototype-notes/" className="underline decoration-cream/40 underline-offset-2 hover:text-cream">Review notes</Link>
       </div>
     </div>
   );
+}
+
+export function ReviewToggle() {
+  const [on, setOn] = useState(false);
+  useEffect(() => { try { setOn(sessionStorage.getItem('kz-approvals') === '1'); } catch { /* ignore */ } }, []);
+  const flip = () => {
+    const v = !on; setOn(v);
+    document.documentElement.classList.toggle('show-approvals', v);
+    try { sessionStorage.setItem('kz-approvals', v ? '1' : '0'); } catch { /* ignore */ }
+  };
+  return <button onClick={flip} aria-pressed={on} className="btn-ghost">{on ? 'Turn off review mode' : 'Turn on review mode'}</button>;
 }
 
 const SHOP_GROUPS = ['Face', 'Body', 'Lips', 'Hair', 'Sets'] as const;
@@ -49,8 +51,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-line bg-cream/95 backdrop-blur supports-[backdrop-filter]:bg-cream/85">
       <div className="bg-ink text-center text-[12.5px] tracking-[0.04em] text-cream">
         <div className="wrap py-2">
-          Free delivery above ₹799 <span className="hidden sm:inline"><span className="text-cream/50">·</span> Dispatched in 1 to 3 working days </span><span className="text-cream/50">·</span> Cash on delivery
-          <span className="needs-approval ml-1 text-[11px]" title="Needs founder approval">(to confirm)</span>
+          <span className="needs-approval" title="Threshold to be confirmed by the founder">Free delivery on orders above ₹799</span>
         </div>
       </div>
       <div className="wrap flex h-[68px] items-center justify-between md:h-[78px]">
@@ -154,8 +155,8 @@ export function Footer() {
       </div>
       <div className="border-t border-cream/15">
         <div className="wrap flex flex-col gap-2 py-6 text-[12.5px] text-cream/55 md:flex-row md:justify-between">
-          <span>© 2026 Kizora Skincare, a brand of <span className="needs-approval" title="Confirm legal entity">Naturekit LLP</span>. Prototype preview for discussion.</span>
-          <span className="flex gap-5"><a href="https://www.instagram.com/kizora.skincare/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/kizora.life" target="_blank" rel="noopener noreferrer">Facebook</a><Link href="/prototype-notes/">Prototype notes</Link></span>
+          <span>© 2026 Kizora Skincare, a brand of <span className="needs-approval" title="Confirm legal entity">Naturekit LLP</span>. Information on this site is general guidance, not medical advice.</span>
+          <span className="flex gap-5"><a href="https://www.instagram.com/kizora.skincare/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/kizora.life" target="_blank" rel="noopener noreferrer">Facebook</a></span>
         </div>
       </div>
     </footer>

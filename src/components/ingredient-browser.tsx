@@ -10,7 +10,7 @@ export function IngredientBrowser() {
   const [g, setG] = useState('All');
   const [q, setQ] = useState('');
   const list = useMemo(() => ingredients.filter(i => (g === 'All' || i.group === g) &&
-    (!q || (i.name + ' ' + i.localName + ' ' + i.inci + ' ' + i.what).toLowerCase().includes(q.toLowerCase()))), [g, q]);
+    (!q || (i.name + ' ' + i.localName + ' ' + i.listedAs + ' ' + i.what).toLowerCase().includes(q.toLowerCase()))), [g, q]);
   return (
     <>
       <div className="flex flex-wrap items-center gap-2 border-b border-line pb-6">
@@ -25,7 +25,7 @@ export function IngredientBrowser() {
               <div>
                 <p className="text-[12px] uppercase tracking-[0.14em] text-sage-deep">{i.group}</p>
                 <h2 className="mt-1 text-[28px] group-hover:underline group-hover:decoration-gold group-hover:underline-offset-4 md:text-[32px]">{i.name}</h2>
-                <p className="text-[13.5px] italic text-ink2">{[i.localName, i.inci.split(' (')[0].split(';')[0]].filter(Boolean).join(' · ')}</p>
+                {i.localName && <p className="text-[13.5px] italic text-ink2">{i.localName}</p>}
               </div>
               <p className="text-[15.5px] text-ink2">{i.what}</p>
               <div className="flex items-center gap-2">
@@ -42,7 +42,7 @@ export function IngredientBrowser() {
       </ul>
       <div id="all" className="mt-20 scroll-mt-28">
         <h2 className="text-[28px]">Every other ingredient, and where to find it</h2>
-        <p className="mt-2 text-ink2">From the published ingredient lists. Products without a full list yet are marked on their pages.</p>
+        <p className="mt-2 text-ink2">Taken from the ingredients published on each product page.</p>
         <dl className="mt-6 grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
           {otherIngredients.map(o => (
             <div key={o.name} className="border-b border-line py-3">

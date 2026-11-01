@@ -34,7 +34,7 @@ export default function HowItsMade() {
             </li>
           ))}
         </ol>
-        <p className="mt-10 rounded-[3px] bg-paper p-6 text-[15px] text-ink2">What we do not say: our products are not sold as Ayurvedic or certified organic today. Our Ayurvedic certification is in process, and this page will change when it is granted.</p>
+        <p className="mt-10 rounded-[3px] bg-paper p-6 text-[15px] text-ink2">Our products are not sold as Ayurvedic or certified organic today. Our Ayurvedic certification is in process.</p>
         <div className="mt-10 flex flex-wrap gap-3"><Link href="/journal/why-our-soaps-take-a-month/" className="btn">Why our soaps take a month</Link><Link href="/collections/bath-body/" className="btn-ghost">Shop soaps</Link></div>
       </section>
     </>

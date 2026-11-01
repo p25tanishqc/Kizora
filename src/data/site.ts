@@ -16,27 +16,26 @@ export interface RitualStep { n: string; role: string; slug?: string; title: str
 export const rituals = {
   morning: {
     slug: 'morning', title: 'Your morning ritual', eyebrow: 'Morning · about three minutes',
-    intro: 'Three light steps that sit well under sunscreen or make-up. Wash your face first with your usual gentle face wash.',
+    intro: 'Two essentials, mist and gel, plus an optional lip balm. About three minutes, and light enough to sit under sunscreen or make-up.',
     image: '/images/rituals/morning.webp', kit: 'morning-ritual-kit', tone: 'bg-butter/50',
     steps: [
       { n: '1', role: 'Mist', slug: 'rose-hydrating-mist', title: 'Rose Hydrating Mist', how: 'Hold about 20 cm away and spray two or three times over a clean face and neck. Wait a few seconds.', why: 'A little water and freshness after washing your face.' },
       { n: '2', role: 'Hydrate', slug: 'pure-aloe-vera-gel', title: 'Pure Aloe Vera Gel', how: 'Smooth a pea-sized amount over face and neck while the mist is still slightly damp.', why: 'Light hydration that does not feel heavy under sunscreen.' },
       { n: '3', role: 'Lips', slug: 'beetroot-ghee-lip-balm', title: 'Beetroot & Ghee Lip Balm', how: 'A thin layer on lips.', why: 'Keeps lips soft through the day, with a light tint.', optional: true },
-      { n: '4', role: 'Protect', title: 'Your sunscreen', how: 'Finish with a broad-spectrum sunscreen of your choice.', why: 'Kizora does not make a sunscreen yet. We would rather say so than leave the step out.' },
     ] as RitualStep[],
     swaps: [
       { label: 'Oily or combination skin', text: 'Use Tea Tree Purifying Mist in step 1.', slug: 'tea-tree-purifying-mist' },
       { label: 'Hot, humid days', text: 'Use Eucalyptus Soothing Mist in step 1.', slug: 'eucalyptus-soothing-mist' },
       { label: 'Drier skin', text: 'Use Aloe Vera Gel with Vitamin E in step 2.', slug: 'aloe-vera-gel-with-vitamin-e' },
     ],
-    gaps: 'Kizora does not make a face wash or a sunscreen yet. Start with your usual gentle face wash, and always finish with sunscreen.',
+    gaps: 'Use your usual gentle face wash before the ritual, and finish with a broad-spectrum sunscreen. These are not included in the kit.',
   },
   evening: {
     slug: 'evening', title: 'Your evening ritual', eyebrow: 'Evening · about ten minutes',
     intro: 'A slower routine for the end of the day. Cleanse, mist, then let an oil do its work overnight. Steps 4 and 5 matter most in winter.',
     image: '/images/rituals/evening.webp', kit: 'evening-ritual-kit', tone: 'bg-dusk text-cream',
     steps: [
-      { n: '1', role: 'Cleanse', slug: 'aloe-vera-bathing-bar', title: 'Aloe Vera Bathing Bar', how: 'Lather between wet hands, wash face and body, rinse with lukewarm water.', why: 'The product page says it is mild enough for face and body.' },
+      { n: '1', role: 'Cleanse', slug: 'aloe-vera-bathing-bar', title: 'Aloe Vera Bathing Bar', how: 'Lather between wet hands, wash face and body, rinse with lukewarm water.', why: 'A gentle bar for face and body.' },
       { n: '2', role: 'Mist', slug: 'rose-hydrating-mist', title: 'Rose Hydrating Mist', how: 'Spray once or twice over face and neck.', why: 'The same bottle as your morning ritual.' },
       { n: '3', role: 'Nourish', slug: 'cold-pressed-moringa-oil', title: 'Cold-Pressed Moringa Oil', how: 'Warm two or three drops between your palms and press onto face and neck.', why: 'Night is the best time for an oil: it has hours to soften skin.' },
       { n: '4', role: 'Lips', slug: 'licorice-cocoa-ghee-lip-balm', title: 'Licorice, Cocoa & Ghee Lip Balm', how: 'A generous layer before bed.', why: 'A richer balm for overnight.', optional: true },
@@ -55,11 +54,11 @@ export const articles: Article[] = [
   { slug: 'why-our-soaps-take-a-month', title: 'Why our soaps take a month', dek: 'How cold-process soap is made, and why we wait 21 to 28 days before packing it.',
     date: 'November 2026', read: '4 min', image: '/images/collections/soaps-bathing-bars.webp', products: ['kuppaimeni-soap', 'hibiscus-rose-soap', 'tomato-extract-soap'], draft: true,
     body: [
-      { p: 'Most soap you buy is made fast. Oils and lye are heated, mixed and pressed into bars in hours. Our natural soaps are made the slow way, in small batches at our partner\'s unit near Kanha National Park in Madhya Pradesh.' },
-      { h: 'What "cold process" means', p: 'In cold-process soap making, oils such as coconut and castor are mixed with lye at low temperatures, poured into moulds and cut into bars. The chemical reaction that turns oil into soap, called saponification, keeps going for weeks after the bars are cut.' },
-      { h: 'Why we wait', p: 'So we leave the bars to cure for 21 to 28 days before they are checked and packed. During that time water evaporates and the bar becomes firmer and longer-lasting. It is slower and it takes space, but it is how our founder\'s partner has always made them.' },
+      { p: 'Our natural soaps are made the slow way, in small batches at our partner\'s unit near Kanha National Park in Madhya Pradesh.' },
+      { h: 'What "cold process" means', p: 'In cold-process soap making, oils such as coconut and castor are mixed with lye at low temperatures, poured into moulds and cut into bars. Freshly cut bars still hold a lot of water.' },
+      { h: 'Why we wait', p: 'So we leave the bars to cure for 21 to 28 days before they are checked and packed. As the bars cure, excess water gradually evaporates, helping them become firmer and last longer in use.' },
       { h: 'How to make a bar last', p: 'Keep it on a soap dish that drains, out of the stream of water. A dry bar lasts much longer than one sitting in a puddle.' },
-      { p: 'Our current soaps include Kuppaimeni (Indian nettle), Hibiscus & Rose and Tomato Extract. Each product page lists what is in it.' },
+      { p: 'Our current soaps include Kuppaimeni (Indian nettle), Hibiscus & Rose and Tomato Extract. Each product page explains its key ingredients and how to use it.' },
     ] },
   { slug: 'how-to-use-moringa-oil-on-your-face', title: 'Moringa oil for your face: how much, when, and for whom', dek: 'Two or three drops at night is usually enough. Here is why, and who should skip it.',
     date: 'November 2026', read: '3 min', image: '/images/products/cold-pressed-moringa-oil/main.webp', products: ['cold-pressed-moringa-oil', 'evening-ritual-kit'], draft: true,
@@ -74,7 +73,7 @@ export const articles: Article[] = [
     body: [
       { p: 'In north Indian winters, skin that was fine in October can feel tight by December. Heels crack, lips peel. A good evening ritual helps, and it does not need many products.' },
       { h: 'Keep the base simple', p: 'Cleanse with a mild bar, mist with rose water, then press two or three drops of moringa oil onto your face. If you prefer a gel, use the aloe gel with vitamin E.' },
-      { h: 'Add lips and feet', p: 'Finish with a rich lip balm, and massage the ghee foot butter into your heels before putting on cotton socks. Our older customers tell us this is the product they reorder most in winter.' },
+      { h: 'Add lips and feet', p: 'Finish with a rich lip balm, and massage the ghee foot butter into your heels before putting on cotton socks. Our founder tells us older customers often reorder it for dry, cracked heels.' },
       { h: 'When to see a doctor', p: 'Cracks that are deep, bleed or hurt need medical care, not just a foot butter.' },
     ] },
 ];
@@ -84,11 +83,9 @@ export const faqs = [
   { q: 'Are your products Ayurvedic or certified organic?', a: 'Not today. We make clean, small-batch skincare. Our Ayurvedic certification is in process and we will update this answer when it is granted.', confirm: true },
   { q: 'Are your products vegan?', a: 'Some are and some are not. Both lip balms and the foot butter contain desi cow ghee, the foot butter also contains beeswax, and the Cow Milk Bathing Bar contains milk. Every product page lists what is in it.' },
   { q: 'Which product should I start with?', a: 'Start with the Morning Ritual Kit: Rose Hydrating Mist and Pure Aloe Vera Gel. It is light, simple, and suits most skin.' },
-  { q: 'How long does delivery take?', a: 'We dispatch in 1 to 3 working days from Madhya Pradesh. Delivery is free on orders above ₹799.', confirm: true },
-  { q: 'How do I pay?', a: 'UPI, cards, net banking and cash on delivery are available at checkout.' },
+  { q: 'Is delivery free?', a: 'Delivery is free on orders above ₹799. For smaller orders, delivery charges are shown at checkout.', confirm: true },
   { q: 'Can I return a product?', a: 'Yes, if it arrives damaged or you receive the wrong item. Please see our returns page and message us within the time it states.', confirm: true },
-  { q: 'Can I use your products during pregnancy?', a: 'Please check the full ingredient list with your doctor.' },
-  { q: 'Do you make products for babies?', a: 'Baby products were mentioned by our founder as a strong seller offline. They are not on the website yet.', confirm: true },
+  { q: 'Can I use your products during pregnancy?', a: 'Please check the ingredients with your doctor.' },
   { q: 'How do I reach you?', a: 'WhatsApp is fastest: +91 96259 05995. You can also email Customercare@kizoraskincare.com.' },
 ];
 
@@ -133,4 +130,32 @@ export const APPROVALS = [
   'Legal entity line in the footer (Kizora Skincare, a brand of Naturekit LLP)',
   'AI crawler policy in robots.txt for the live site (GPTBot currently blocked)',
   'Real photos of the unit, the makers and the winter hampers',
+  'Cash on delivery, payment methods and dispatch time (removed from customer pages until confirmed)',
+  'Customer-facing name "Evening Essentials" for the two-product evening kit',
+  'Face use of the Aloe Vera Bathing Bar (the live product page says face and body)',
+  'Current Google rating and a link to the real Google review profile before showing it',
+  'A working newsletter sign-up with consent and unsubscribe, and a review flow, before either is shown',
+  'Cure time (21 to 28 days) applies to each natural soap',
+];
+
+// Second review (2 Nov 2026): "Kizora website: what to refine, what to keep"
+export const reviewLog = [
+  { id: 'KZ-01', pri: 'P2', change: 'Homepage ritual subheading replaced with the approved line.', url: '/' },
+  { id: 'KZ-02', pri: 'P2', change: 'Face gels introduction replaced with the approved copy; products and comparison table unchanged (table now built from shared product data).', url: '/collections/face-gels/' },
+  { id: 'KZ-03', pri: 'P1', change: 'Morning sunscreen card removed; one note now covers face wash and sunscreen.', url: '/rituals/morning/' },
+  { id: 'KZ-04', pri: 'P1', change: 'Morning kit shown as "2 essentials"; "Includes mist + gel" by the CTA; lip balm marked optional on the page and homepage card.', url: '/rituals/morning/' },
+  { id: 'KZ-05', pri: 'P1', change: 'Evening page offers two clear choices side by side: Evening essentials (2 products, ₹1,060) and Complete evening ritual (5 products, ₹2,505). Steps show which option includes them.', url: '/rituals/evening/' },
+  { id: 'KZ-06', pri: 'P0', change: 'Founder-facing "To confirm" blocks removed from all product pages; open items now listed only on this notes page.', url: '/products/pure-aloe-vera-gel/' },
+  { id: 'KZ-07', pri: 'P0', change: '"Full ingredient lists" claims replaced with "Ingredients explained clearly"; incomplete lists labelled "Key ingredients".', url: '/' },
+  { id: 'KZ-08', pri: 'P1', change: 'Redirect annotations removed from all collection pages (redirect map stays in docs/SEO-AEO.md).', url: '/collections/face-gels/' },
+  { id: 'KZ-09', pri: 'P1', change: 'Ingredient pages: unverified INCI and "confirm" notes removed; names shown as they appear on our labels; repeated disclaimers replaced by one footer note.', url: '/ingredients/aloe-vera/' },
+  { id: 'KZ-10', pri: 'P0', change: 'Photo placeholders, draft labels, "replace this" captions, lip-balm size placeholder and unconfirmed hours removed.', url: '/about/' },
+  { id: 'KZ-11', pri: 'P1', change: '"The product page says/describes" phrasing rewritten in customer language.', url: '/products/aloe-vera-bathing-bar/' },
+  { id: 'KZ-12', pri: 'P0', change: 'COD, payment-method and dispatch promises removed; banner reads "Orders are not being processed"; empty cart shows delivery "—", small orders "Calculated at checkout".', url: '/cart/' },
+  { id: 'KZ-13', pri: 'P1', change: 'Newsletter form removed until a working opt-in exists; "Write a review" button removed.', url: '/' },
+  { id: 'KZ-14', pri: 'P2', change: 'Photography direction kept. Gallery thumbnails now load immediately (they were blank in the review screenshots).', url: '/products/pure-aloe-vera-gel/' },
+  { id: 'KZ-15', pri: 'P1', change: 'Unlinked Google rating removed; replaced with a WhatsApp prompt. Founder-attributed foot-butter line kept.', url: '/' },
+  { id: 'KZ-16', pri: 'P1', change: 'Comparison table, kit totals and structured data all read from the shared product data.', url: '/ingredients/' },
+  { id: 'KZ-17', pri: 'P1', change: 'Draft markers removed; saponification sentence replaced with the approved curing line.', url: '/journal/why-our-soaps-take-a-month/' },
+  { id: 'KZ-18', pri: 'P2', change: 'Preview stays noindex; route, link, schema and viewport checks re-run (see docs/REVIEW-CHANGELOG.md).', url: '/prototype-notes/' },
 ];

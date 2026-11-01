@@ -11,7 +11,7 @@ export default function Journal() {
     <div className="wrap pb-10 pt-8">
       <Crumbs items={[{ name: 'Journal' }]} />
       <h1 className="mt-10 text-[46px] md:text-[60px]">Journal</h1>
-      <p className="lead mt-3 max-w-xl">Notes on how things are made and how to use them. <span className="needs-approval" title="Draft articles for founder review">Draft articles for review.</span></p>
+      <p className="lead mt-3 max-w-xl">Notes on how things are made and how to use them.</p>
       <Link href={`/journal/${first.slug}/`} className="group mt-12 grid gap-8 border-y border-line py-10 md:grid-cols-2 md:items-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={first.image} alt="" className="aspect-[3/2] w-full rounded-[3px] object-cover" />

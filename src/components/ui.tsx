@@ -33,7 +33,7 @@ export function ProductCard({ p, note, priority = false }: { p: Product; note?: 
     <Link href={`/products/${p.slug}/`} className="group block">
       <div className="relative aspect-[4/5] overflow-hidden rounded-[3px] bg-paper">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={img(p.slug, 'card')} alt={`${p.name}, ${p.size}`} loading={priority ? 'eager' : 'lazy'} width={600} height={750}
+        <img src={img(p.slug, 'card')} alt={p.size ? `${p.name}, ${p.size}` : p.name} loading={priority ? 'eager' : 'lazy'} width={600} height={750}
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
         {p.kind === 'kit' && <span className="absolute left-3 top-3 rounded-sm bg-cream/90 px-2 py-1 text-[11px] font-medium uppercase tracking-[0.12em]">Kit</span>}
       </div>
@@ -44,7 +44,7 @@ export function ProductCard({ p, note, priority = false }: { p: Product; note?: 
         </div>
         <div className="mt-1 flex items-baseline gap-2 md:mt-0 md:block md:shrink-0 md:text-right">
           <div className="font-medium">{inr(p.price)}</div>
-          <div className="text-[12px] text-ink2">{p.size}</div>
+          {p.size && <div className="text-[12px] text-ink2">{p.size}</div>}
         </div>
       </div>
     </Link>

@@ -11,12 +11,12 @@ export default function Contact() {
       <div className="grid gap-12 pt-10 md:grid-cols-2">
         <div>
           <h1 className="text-[46px] md:text-[60px]">Talk to us</h1>
-          <p className="lead mt-5 max-w-md">Product guidance, order help, or a question about your skin. A person from our team will reply, usually within a working day.</p>
+          <p className="lead mt-5 max-w-md">Product guidance, order help, or a question about your skin. A person from our team will reply.</p>
           <a className="btn mt-8" href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
         </div>
         <dl className="divide-y divide-line border-y border-line text-[16px]">
-          {[['WhatsApp and phone', SITE.phone], ['Email', SITE.email], ['Hours', 'To be confirmed'], ['Office', SITE.address], ['Made at', 'Our partner unit near Kanha National Park, Madhya Pradesh'], ['Company', `Kizora Skincare, a brand of ${SITE.legal}`]].map(([k, v]) => (
-            <div key={k} className="grid grid-cols-[150px_1fr] gap-4 py-4"><dt className="text-ink2">{k}</dt><dd>{k === 'Hours' || k === 'Company' ? <Confirm>{v}</Confirm> : v}</dd></div>
+          {[['WhatsApp and phone', SITE.phone], ['Email', SITE.email], ['Office', SITE.address], ['Made at', 'Our partner unit near Kanha National Park, Madhya Pradesh'], ['Company', `Kizora Skincare, a brand of ${SITE.legal}`]].map(([k, v]) => (
+            <div key={k} className="grid grid-cols-1 gap-1 py-4 sm:grid-cols-[150px_1fr] sm:gap-4"><dt className="text-ink2">{k}</dt><dd className="min-w-0 break-words">{k === 'Company' ? <Confirm>{v}</Confirm> : v}</dd></div>
           ))}
         </dl>
       </div>

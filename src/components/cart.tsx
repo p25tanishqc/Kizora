@@ -73,7 +73,7 @@ export function CartLines({ compact = false }: { compact?: boolean }) {
                 <Link href={`/products/${p.slug}/`} className="font-serif text-[17px] leading-snug hover:underline">{p.name}</Link>
                 <span className="shrink-0 font-medium">{inr(p.price * l.qty)}</span>
               </div>
-              <span className="text-[13px] text-ink2">{p.size}</span>
+              {p.size && <span className="text-[13px] text-ink2">{p.size}</span>}
               <div className="mt-auto flex items-center gap-3 pt-2">
                 <div className="flex items-center border border-line">
                   <button aria-label={`Decrease ${p.name}`} className="h-8 w-8" onClick={() => setQty(l.slug, l.qty - 1)}>−</button>

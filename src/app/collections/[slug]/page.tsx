@@ -12,12 +12,17 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return { title: c.title, description: c.description, alternates: { canonical: `/collections/${c.slug}/` }, openGraph: { images: [c.image] } };
 }
 
-const GEL_TABLE = [
-  ['Best for', 'Everyday hydration, all skin types', 'Skin that feels a little drier', 'If you like a soft rose scent'],
-  ["What's in it", '99% aloe leaf gel + preservative', '+ vitamin E', '+ rose essential oil'],
-  ['Size · price', '30 g · ₹325', '50 g · ₹425', '50 g · ₹425'],
-  ['Use', 'Morning and night', 'Morning and night', 'Morning and night'],
-];
+const GELS = ['pure-aloe-vera-gel', 'aloe-vera-gel-with-vitamin-e', 'aloe-vera-gel-with-rose-oil'];
+// Built from the shared product data, so sizes and prices always match the product pages.
+const gelTable = () => {
+  const g = GELS.map(s => bySlug(s)!);
+  return [
+    ['Best for', 'Everyday hydration, all skin types', 'Skin that feels a little drier', 'If you like a soft rose scent'],
+    ["What's in it", '99% aloe leaf gel + preservative', '+ vitamin E', '+ rose essential oil'],
+    ['Size · price', ...g.map(p => `${p.size} · ${inr(p.price)}`)],
+    ['Use', ...g.map(p => p.when)],
+  ];
+};
 
 export default function CollectionPage({ params }: { params: { slug: string } }) {
   const c = collectionBySlug(params.slug); if (!c) notFound();
@@ -46,13 +51,12 @@ export default function CollectionPage({ params }: { params: { slug: string } })
                 <thead><tr className="bg-[#F1EADD] text-[12px] uppercase tracking-[0.12em] text-sage-deep">
                   <th className="p-3.5" /><th className="p-3.5"><Link href="/products/pure-aloe-vera-gel/" className="link">Pure Aloe Vera Gel</Link></th>
                   <th className="p-3.5"><Link href="/products/aloe-vera-gel-with-vitamin-e/" className="link">With Vitamin E</Link></th><th className="p-3.5"><Link href="/products/aloe-vera-gel-with-rose-oil/" className="link">With Rose Oil</Link></th></tr></thead>
-                <tbody>{GEL_TABLE.map(r => <tr key={r[0]} className="border-t border-line">{r.map((cell, i) => <td key={i} className={`p-3.5 align-top ${i === 0 ? 'font-medium' : ''}`}>{cell}</td>)}</tr>)}</tbody>
+                <tbody>{gelTable().map(r => <tr key={r[0]} className="border-t border-line">{r.map((cell, i) => <td key={i} className={`p-3.5 align-top ${i === 0 ? 'font-medium' : ''}`}>{cell}</td>)}</tr>)}</tbody>
               </table>
             </div>
             <p className="mt-6 rounded-[3px] bg-butter/50 p-5 text-[15px]">Pair any gel with Rose Hydrating Mist for the <Link href="/products/morning-ritual-kit/" className="link">Morning Ritual Kit ({inr(bySlug('morning-ritual-kit')!.price)})</Link>. Looking for lips or heels? See <Link href="/collections/lip-care/" className="link">Lip care</Link> and <Link href="/collections/hands-feet/" className="link">Hands &amp; feet</Link>.</p>
           </div>
         )}
-        {c.replaces && <p className="mt-16 text-[12.5px] text-ink2 needs-approval" title="Redirect for the live site">Live-site redirect: {c.replaces} → /collections/{c.slug}/</p>}
       </section>
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: c.name, description: c.description, mainEntity: { '@type': 'ItemList', itemListElement: items.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: `https://kizoraskincare.com/products/${p.slug}/`, name: p.name })) } }} />
     </>

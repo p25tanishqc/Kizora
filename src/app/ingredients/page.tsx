@@ -16,7 +16,7 @@ export default function Ingredients() {
           <Crumbs items={[{ name: 'Ingredient library' }]} />
           <div className="grid gap-8 pt-10 md:grid-cols-[1.2fr_1fr] md:items-end">
             <div><p className="eyebrow">Ingredient library · 12 profiles</p><h1 className="mt-3 text-[46px] md:text-[64px]">Know your ingredients</h1></div>
-            <p className="lead">What each ingredient is, how it has been used in Indian homes, what the research does and does not say, and which of our products contain it. Nothing here is medical advice.</p>
+            <p className="lead">What each ingredient is, how it has been used in Indian homes, what the research does and does not say, and which of our products contain it.</p>
           </div>
         </div>
       </section>

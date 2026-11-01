@@ -10,7 +10,7 @@ export function Gallery({ images }: { images: { src: string; alt: string; label:
       <div className="relative aspect-[4/5] overflow-hidden rounded-[3px] bg-paper">
         {images.map((im, k) => (
           // eslint-disable-next-line @next/next/no-img-element
-          <img key={im.src} src={im.src} alt={im.alt} width={1200} height={1500} loading={k === 0 ? 'eager' : 'lazy'}
+          <img key={im.src} src={im.src} alt={im.alt} width={1200} height={1500}
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${k === i ? 'opacity-100' : 'opacity-0'}`} />
         ))}
         <span className="absolute bottom-3 left-3 rounded-sm bg-cream/85 px-2 py-1 text-[11.5px] text-ink2">{images[i].label}</span>
@@ -21,7 +21,7 @@ export function Gallery({ images }: { images: { src: string; alt: string; label:
             <button key={im.src} role="tab" aria-selected={k === i} aria-label={im.label} onClick={() => setI(k)}
               className={`h-24 w-[76px] overflow-hidden rounded-[2px] border bg-paper ${k === i ? 'border-ink' : 'border-line opacity-80 hover:opacity-100'}`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={im.src} alt="" className="h-full w-full object-cover" loading="lazy" />
+              <img src={im.src} alt="" className="h-full w-full object-cover" />
             </button>
           ))}
         </div>

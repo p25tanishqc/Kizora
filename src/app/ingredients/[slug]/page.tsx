@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ingredients, ingredientBySlug } from '@/data/ingredients';
 import { img } from '@/data/products';
-import { Crumbs, Faq, JsonLd, ProductGrid } from '@/components/ui';
+import { Crumbs, Faq, ProductGrid } from '@/components/ui';
 
 export const dynamicParams = false;
 export function generateStaticParams() { return ingredients.map(i => ({ slug: i.slug })); }
@@ -27,12 +27,11 @@ export default function IngredientPage({ params }: { params: { slug: string } })
         <div className="relative aspect-[4/3] overflow-hidden rounded-[3px] bg-paper">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={img(i.products[0], 'detail')} alt={`Kizora product made with ${i.name}`} className="h-full w-full object-cover" />
-          <span className="needs-approval absolute bottom-3 left-3 rounded-sm bg-cream/85 px-2 py-1 text-[11.5px] text-ink2" title="Replace with a real photo of the raw ingredient at the unit">Product photo; raw-ingredient photo to come</span>
         </div>
         <div>
           <p className="eyebrow">{i.group}</p>
           <h1 className="mt-2 text-[48px] md:text-[60px]">{i.name}</h1>
-          <p className="mt-1 italic text-sage-deep">{[i.localName, i.inci].filter(Boolean).join(' · ')}</p>
+          {i.localName && <p className="mt-1 italic text-sage-deep">{i.localName}</p>}
           <p className="lead mt-5">{i.what}</p>
           <p className="mt-5 text-[15px]"><span className="text-ink2">Suits:</span> {i.concerns}</p>
         </div>
@@ -48,11 +47,9 @@ export default function IngredientPage({ params }: { params: { slug: string } })
         </div>
         <aside className="space-y-4 self-start rounded-[3px] bg-paper p-7 text-[15px]">
           <p className="eyebrow">At a glance</p>
-          <p><b className="font-medium">INCI:</b> {i.inci}</p>
+          <p><b className="font-medium">On our labels:</b> {i.listedAs}</p>
           <p><b className="font-medium">Found in:</b> {i.products.length} Kizora product{i.products.length > 1 ? 's' : ''}</p>
-          {i.source ? <p><b className="font-medium">Source:</b> <a href={i.source.url} target="_blank" rel="noopener noreferrer" className="link">{i.source.title || 'Reference'}</a></p>
-            : <p className="text-ink2">No single review cited. INCI and specification to be confirmed with our supplier.</p>}
-          <p className="border-t border-line pt-4 text-[13.5px] text-ink2">We keep tradition and evidence apart, and we say what an ingredient cannot do. This is not medical advice.</p>
+          {i.source && <p><b className="font-medium">Further reading:</b> <a href={i.source.url} target="_blank" rel="noopener noreferrer" className="link">{i.source.title || 'Reference'}</a></p>}
         </aside>
       </section>
       <section className="wrap max-w-[900px] py-8"><h2 className="mb-5 text-[28px]">Common questions</h2><Faq items={qa} /></section>
@@ -61,7 +58,6 @@ export default function IngredientPage({ params }: { params: { slug: string } })
         <ProductGrid slugs={i.products} />
         <p className="mt-14 text-right"><Link href={`/ingredients/${next.slug}/`} className="link">Next ingredient: {next.name} →</Link></p>
       </section>
-      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: qa.map(x => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })) }} />
     </>
   );
 }

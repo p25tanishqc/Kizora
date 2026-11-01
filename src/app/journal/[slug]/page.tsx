@@ -16,7 +16,7 @@ export default function Article({ params }: { params: { slug: string } }) {
     <article className="pb-10 pt-8">
       <div className="wrap max-w-[760px]">
         <Crumbs items={[{ name: 'Journal', href: '/journal/' }, { name: a.title }]} />
-        <p className="eyebrow mt-10">{a.date} · {a.read} read{a.draft && <span className="needs-approval ml-2" title="Draft for founder review">· draft</span>}</p>
+        <p className="eyebrow mt-10">{a.date} · {a.read} read</p>
         <h1 className="mt-3 text-[40px] leading-tight md:text-[54px]">{a.title}</h1>
         <p className="lead mt-5">{a.dek}</p>
       </div>
