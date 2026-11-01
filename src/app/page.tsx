@@ -189,7 +189,7 @@ export default function Home() {
       </section>
 
       {/* JOURNAL */}
-      <section className="border-t border-line bg-paper py-20 md:py-24">
+      <section className="border-t border-line pt-20 md:pt-24">
         <div className="wrap">
           <SectionHead eyebrow="Journal" title="Notes from the unit." />
           <div className="grid gap-10 md:grid-cols-3">

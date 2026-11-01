@@ -390,7 +390,7 @@ export const products: Product[] = [
     fullIngredients: 'Onion Juice, Amla, Ginger, Garlic, Jaswand, Methi, Curry Leaves, Brahmi, Bhringraj, Jatamansi, Coconut Oil, Castor Oil, Sesame Oil, Fragrance.',
     ingredientSlugs: ['bhringraj-brahmi-amla'], collections: ['hair', 'oils'],
     needs: ['dry-scalp'], skin: ['all'],
-    faqs: [{ q: 'Will it stop hair fall?', a: 'We do not claim that. It is a conditioning oil for a regular scalp-massage ritual.' }],
+    faqs: [{ q: 'Will it stop hair fall?', a: 'It is not a treatment for hair fall. It is a conditioning oil for a regular scalp-massage ritual.' }],
     useWith: ['bringa-brahmi-hair-oil'],
     approvals: ['"Ayurvedic" and "healthy hair growth" removed from the name until licensed/substantiated', 'Typo "Leqaves" corrected'],
   },

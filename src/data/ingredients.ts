@@ -12,7 +12,7 @@ export const ingredients: Ingredient[] = [
   "evidence": "The gel is mostly water with polysaccharides. Reviews describe moisturising and soothing properties; much of the research is laboratory or small studies, so it is best described as a light hydrator that feels cooling.",
   "how": "Leaves a light layer that holds water on the skin surface; feels cool.",
   "concerns": "Dryness, skin that feels tight or warm after sun or shaving.",
-  "limits": "Rare allergy; patch test. Do not describe it as treating burns or acne.",
+  "limits": "Rare allergy; patch test first. It is a light hydrator, not a treatment for burns or acne.",
   "products": [
    "pure-aloe-vera-gel",
    "aloe-vera-gel-with-vitamin-e",
@@ -99,7 +99,7 @@ export const ingredients: Ingredient[] = [
   "evidence": "Most research is on tea tree OIL, which has antimicrobial properties in laboratory studies and some clinical use for mild acne. A leaf water contains far smaller amounts of those compounds, so oil studies cannot be borrowed for this product.",
   "how": "A fresh, herbal mist that feels clarifying on oily skin.",
   "concerns": "Oily and combination skin that wants a light refresh.",
-  "limits": "Avoid eyes; stop if irritation occurs. Do not claim it treats acne.",
+  "limits": "Avoid eyes; stop if irritation occurs. It is not a treatment for acne.",
   "products": [
    "tea-tree-purifying-mist"
   ],

@@ -45,7 +45,7 @@ export const rituals = {
       { label: 'Prefer a gel at night', text: 'Use Aloe Vera Gel with Vitamin E instead of the oil in step 3.', slug: 'aloe-vera-gel-with-vitamin-e' },
       { label: 'Very dry skin in winter', text: 'Use the Cow Milk Bathing Bar for your body in step 1.', slug: 'cow-milk-bathing-bar' },
     ],
-    gaps: 'Steps 4 and 5 are optional. If your skin is oily, one drop of oil is enough, or skip it and use the aloe gel.',
+    gaps: 'Evening essentials covers the oil and lip balm. The complete ritual adds the bathing bar, mist and foot butter. If your skin is oily, one drop of oil is enough, or skip it and use the aloe gel.',
   },
 };
 
@@ -64,7 +64,7 @@ export const articles: Article[] = [
     date: 'November 2026', read: '3 min', image: '/images/products/cold-pressed-moringa-oil/main.webp', products: ['cold-pressed-moringa-oil', 'evening-ritual-kit'], draft: true,
     body: [
       { p: 'Moringa is the drumstick tree, sahjan, that grows across much of India. Its seeds give a light oil. For our oil, the seeds are dried in the sun before they are pressed, and nothing else is added.' },
-      { h: 'What it does', p: 'Like most plant oils, moringa seed oil is an emollient: it softens the surface of the skin and helps it feel less dry. We do not claim that it changes wrinkles or elasticity; that would need proper testing.' },
+      { h: 'What it does', p: 'Like most plant oils, moringa seed oil is an emollient: it softens the surface of the skin and helps it feel less dry. There is no good evidence that it changes wrinkles or elasticity, so we do not suggest it does.' },
       { h: 'How much and when', p: 'Two or three drops is enough for face and neck. Warm them between your palms and press them on after your mist or gel at night. Night is when an oil has the most time to work.' },
       { h: 'Who should go easy', p: 'If your skin is oily or breaks out easily, try a single drop on a few nights first, or stay with the aloe gel. As with anything new, patch test on your inner arm.' },
     ] },
