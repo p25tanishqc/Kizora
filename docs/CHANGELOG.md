@@ -2,9 +2,11 @@
 
 Each row maps to an issue ID in the *Kizora Website Transformation Report* (1 November 2026).
 
+The second review (KZ-01 to KZ-18, 2 November 2026) is logged separately in [REVIEW-CHANGELOG.md](REVIEW-CHANGELOG.md), with before and after screenshots.
+
 | ID | Area | Live site today | In this prototype | Page |
 |---|---|---|---|---|
-| K-01 | Trust | FAQ full of theme placeholder text; checkout says "Debating me breeding be answered."; /blog/ shows a theme demo. | Real FAQ (/faq/), clean demo cart, Journal with three draft articles. | `/faq/` |
+| K-01 | Trust | FAQ full of theme placeholder text; checkout says "Debating me breeding be answered."; /blog/ shows a theme demo. | Real FAQ (/faq/), clean demo cart, Journal with three articles. | `/faq/` |
 | K-02 | Policy | Returns policy contains a drafting note. | Returns summary written plainly; full policy to be legally reviewed. | `/returns/` |
 | K-03 | Claims | "Cruelty-Free & Vegan" badge on the ghee foot butter and cow milk bar. | Clear "Contains" line on every product with milk, ghee or beeswax. | `/products/cow-milk-bathing-bar/` |
 | K-04 | Product facts | 30 g gel FAQ mentions rose oil; Vitamin E gallery shows the rose-oil carton; foot butter "50ml"; typos. | Facts corrected; one product template so details cannot drift. | `/products/pure-aloe-vera-gel/` |

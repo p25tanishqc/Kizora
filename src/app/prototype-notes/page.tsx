@@ -25,7 +25,7 @@ export default function Notes() {
           <thead><tr className="bg-ink text-[12px] uppercase tracking-[0.12em] text-cream"><th className="p-3">ID</th><th className="p-3">Priority</th><th className="p-3">What changed</th><th className="p-3">See it</th></tr></thead>
           <tbody>{reviewLog.map((c, i) => (
             <tr key={c.id} className={`border-b border-line align-top ${i % 2 ? 'bg-paper' : ''}`}>
-              <td className="p-3 font-medium">{c.id}</td><td className="p-3">{c.pri}</td><td className="p-3">{c.change}</td>
+              <td className="whitespace-nowrap p-3 font-medium">{c.id}</td><td className="p-3">{c.pri}</td><td className="p-3">{c.change}</td>
               <td className="p-3"><Link href={c.url} className="link whitespace-nowrap">Open →</Link></td>
             </tr>))}
           </tbody>
@@ -38,7 +38,7 @@ export default function Notes() {
           <thead><tr className="bg-ink text-[12px] uppercase tracking-[0.12em] text-cream"><th className="p-3">ID</th><th className="p-3">Area</th><th className="p-3">Live site today</th><th className="p-3">In this prototype</th><th className="p-3">See it</th></tr></thead>
           <tbody>{changelog.map((c, i) => (
             <tr key={c.id} className={`border-b border-line align-top ${i % 2 ? 'bg-paper' : ''}`}>
-              <td className="p-3 font-medium">{c.id}</td><td className="p-3">{c.area}</td><td className="p-3 text-ink2">{c.before}</td><td className="p-3">{c.after}</td>
+              <td className="whitespace-nowrap p-3 font-medium">{c.id}</td><td className="p-3">{c.area}</td><td className="p-3 text-ink2">{c.before}</td><td className="p-3">{c.after}</td>
               <td className="p-3"><Link href={c.link} className="link whitespace-nowrap">Open →</Link></td>
             </tr>))}
           </tbody>

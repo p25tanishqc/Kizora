@@ -97,7 +97,7 @@ function CartDrawer() {
     window.addEventListener('keydown', onKey); return () => window.removeEventListener('keydown', onKey);
   }, [setOpen]);
   return (
-    <div className={`fixed inset-0 z-[60] ${open ? '' : 'pointer-events-none'}`} aria-hidden={!open}>
+    <div className={`fixed inset-0 z-[60] ${open ? '' : 'pointer-events-none'}`} aria-hidden={!open} {...(open ? {} : { inert: '' as unknown as boolean })}>
       <div className={`absolute inset-0 bg-ink/30 transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`} onClick={() => setOpen(false)} />
       <aside role="dialog" aria-label="Cart" className={`absolute right-0 top-0 flex h-full w-full max-w-[420px] flex-col bg-cream shadow-xl transition-transform duration-300 ${open ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex items-center justify-between border-b border-line px-6 py-5">

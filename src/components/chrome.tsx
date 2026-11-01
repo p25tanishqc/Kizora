@@ -109,7 +109,7 @@ export function Header() {
         </div>
       )}
       {/* mobile menu */}
-      <div className={`fixed inset-0 z-[70] md:hidden ${menu ? '' : 'pointer-events-none'}`} aria-hidden={!menu}>
+      <div className={`fixed inset-0 z-[70] md:hidden ${menu ? '' : 'pointer-events-none'}`} aria-hidden={!menu} {...(menu ? {} : { inert: '' as unknown as boolean })}>
         <div className={`absolute inset-0 bg-ink/30 transition-opacity ${menu ? 'opacity-100' : 'opacity-0'}`} onClick={() => setMenu(false)} />
         <nav aria-label="Mobile" className={`absolute left-0 top-0 h-full w-[86%] max-w-[360px] overflow-y-auto bg-cream px-6 pb-10 pt-5 transition-transform duration-300 ${menu ? 'translate-x-0' : '-translate-x-full'}`}>
           <div className="mb-6 flex items-center justify-between">

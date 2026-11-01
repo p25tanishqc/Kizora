@@ -71,7 +71,7 @@ export default function Home() {
                 <ol className="mt-5 space-y-1.5 text-[15px]">
                   {r.steps.filter(s => s.slug).map(s => (
                     <li key={s.n} className="flex gap-3"><span className="w-5 font-serif italic text-gold">{s.n}</span>
-                      <span>{s.title}{!k.components!.includes(s.slug!) && <span className="opacity-60"> · optional</span>}</span></li>
+                      <span>{s.title}{!k.components!.includes(s.slug!) && <span className="opacity-80"> · optional</span>}</span></li>
                   ))}
                 </ol>
                 <div className={`mt-6 border-t pt-5 text-[14px] ${r.slug === 'evening' ? 'border-cream/20' : 'border-ink/15'}`}>
