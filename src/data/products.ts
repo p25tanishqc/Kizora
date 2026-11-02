@@ -464,14 +464,9 @@ export const kits: Product[] = [
 
 export const allItems: Product[] = [...products, ...kits];
 export const bySlug = (slug: string) => allItems.find(p => p.slug === slug);
-// Original kizoraskincare.com product photos (see tools/images/originals.py): /images/products/<slug>/1.webp … n.webp, plus card.webp.
-export const PHOTO_COUNT: Record<string, number> = {
-  'pure-aloe-vera-gel': 4, 'aloe-vera-gel-with-vitamin-e': 5, 'aloe-vera-gel-with-rose-oil': 5, 'rose-hydrating-mist': 4,
-  'tea-tree-purifying-mist': 4, 'eucalyptus-soothing-mist': 4, 'cold-pressed-moringa-oil': 3, 'aloe-vera-bathing-bar': 4,
-  'cow-milk-bathing-bar': 3, 'ubtan-bathing-bar': 4, 'kuppaimeni-soap': 4, 'hibiscus-rose-soap': 4, 'tomato-extract-soap': 4,
-  'fig-vanilla-shower-wash': 2, 'avocado-olive-ghee-foot-butter': 2, 'beetroot-ghee-lip-balm': 4, 'licorice-cocoa-ghee-lip-balm': 4,
-  'red-onion-hair-oil': 3, 'bringa-brahmi-hair-oil': 3,
-};
+// Product photos supplied by the founder team (2 Nov 2026), upscaled for HD by tools/images/enhance.py:
+// /images/products/<slug>/1.webp (1600 x 2000) and card.webp (600 x 750).
+export const PHOTO_COUNT: Record<string, number> = {};
 /** Products a slug stands for: a product is itself, a kit is its components. */
 export const partsOf = (slug: string): string[] => { const p = allItems.find(x => x.slug === slug); return p?.kind === 'kit' ? p.components! : [slug]; };
 /** Main photo of a product ('card' = 600 px wide). A kit uses its first component's photo; show kits with <Mosaic> where there is room. */

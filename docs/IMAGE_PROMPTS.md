@@ -1,11 +1,10 @@
 # Image notes and prompts
 
 ## What the site uses now
-* Kizora's original product photos from the kizoraskincare.com product galleries (downloaded 2 November 2026,
-  kept in `assets-source/original-site/`), shown unedited. Earlier cut-out scenes were removed at the founder's request.
-* Each photo is only widened to a 4:5 frame with its own background colour (no cropping) and saved as WebP
-  (`tools/images/originals.py`).
-* The foot butter "before and after" heel photo from the live site is not used, because it implies a result we cannot prove.
+* One photo per product, supplied by the founder team on 2 November 2026 (`assets-source/new-photos/`),
+  plus a homepage group shot and an aloe face image. Each was checked against its product label and placed on that product.
+* The photos are 820 x 1024, so each is upscaled 4x with Real-ESRGAN and saved at 1600 x 2000 (`tools/images/enhance.py`).
+* The earlier website gallery photos are kept, unused, in `assets-source/original-site/`.
 
 ## Still needed: real photography (highest value)
 1. The unit near Kanha: wide shot, hands making soap, soaps curing on racks, moringa seeds drying in the sun.

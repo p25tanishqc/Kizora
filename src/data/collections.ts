@@ -4,10 +4,11 @@ export interface Collection {
   slug: CollectionSlug; name: string; group: 'Face' | 'Body' | 'Lips' | 'Hair' | 'Sets';
   intro: string; title: string; description: string; tone: string;
   replaces?: string; // old URL on the live site
+  hero?: string;     // optional lifestyle image instead of the product photos
 }
 
 export const collections: Collection[] = [
-  { slug: 'face-gels', name: 'Face gels', group: 'Face', tone: 'bg-paper',
+  { slug: 'face-gels', name: 'Face gels', group: 'Face', tone: 'bg-paper', hero: '/images/home/aloe-face.webp',
     intro: 'Three refreshing aloe gels, each made with 99% aloe leaf gel. Lightweight, cooling and quick to absorb, they\'re perfect for both face and body.',
     title: 'Aloe vera face gels | Light daily hydration | Kizora', description: 'Three 99% aloe leaf gels: plain, with vitamin E, or with rose oil. Light, for face and body.',
     replaces: '/product-category/moisturisers-gels/' },

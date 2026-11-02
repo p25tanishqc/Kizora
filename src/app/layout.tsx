@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   title: { default: 'Kizora Skincare | Slow-made skincare from near Kanha, MP', template: '%s' },
   description: 'Small-batch aloe gels, face mists, oils and natural soaps made near Kanha, Madhya Pradesh. Simple morning and evening rituals, with ingredients explained clearly.',
   robots: indexable ? { index: true, follow: true } : { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } },
-  openGraph: { type: 'website', siteName: 'Kizora Skincare', locale: 'en_IN', images: [{ url: '/images/products/pure-aloe-vera-gel/1.webp', width: 1200, height: 1500 }] },
+  openGraph: { type: 'website', siteName: 'Kizora Skincare', locale: 'en_IN', images: [{ url: '/images/home/og.webp', width: 1200, height: 630 }] },
 };
 export const viewport: Viewport = { themeColor: '#F6F1E8', width: 'device-width', initialScale: 1 };
 

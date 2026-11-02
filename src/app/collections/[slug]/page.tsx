@@ -37,7 +37,10 @@ export default function CollectionPage({ params }: { params: { slug: string } })
             <h1 className="mt-3 text-[46px] md:text-[60px]">{c.name}</h1>
             <p className="lead mt-5 max-w-md">{c.intro}</p>
           </div>
-          <Mosaic slugs={items.filter(p => p.kind === 'product').slice(0, 3).map(p => p.slug).concat(items.some(p => p.kind === 'product') ? [] : items.slice(0, 1).map(p => p.slug)).slice(0, 3)} priority className="mb-8 overflow-hidden rounded-[3px] md:my-10" />
+          {c.hero
+            ? /* eslint-disable-next-line @next/next/no-img-element */
+              <img src={c.hero} alt={`${c.name}: aloe vera leaves`} width={1800} height={1500} fetchPriority="high" className="mb-8 h-auto w-full rounded-[3px] md:my-10" />
+            : <Mosaic slugs={items.filter(p => p.kind === 'product').slice(0, 3).map(p => p.slug).concat(items.some(p => p.kind === 'product') ? [] : items.slice(0, 1).map(p => p.slug)).slice(0, 3)} priority className="mb-8 overflow-hidden rounded-[3px] md:my-10" />}
         </div>
       </section>
       <section className="wrap py-14">

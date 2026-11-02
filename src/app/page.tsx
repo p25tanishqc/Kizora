@@ -28,7 +28,8 @@ export default function Home() {
       {/* HERO */}
       <section className="overflow-hidden bg-[#EFE8DC]">
         <div className="wrap grid items-center gap-10 py-10 md:grid-cols-[1fr_1.15fr] md:gap-12 md:py-16">
-          <Mosaic slugs={['rose-hydrating-mist', 'pure-aloe-vera-gel', 'avocado-olive-ghee-foot-butter']} priority className="order-2 overflow-hidden rounded-[3px]" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/home/hero.webp" alt="Kizora face mists, aloe vera gels, soaps, lip balm and bathing bars together" width={2000} height={1851} fetchPriority="high" className="order-2 h-auto w-full rounded-[3px]" />
           <div className="order-1">
             <div className="max-w-[520px]">
               <p className="eyebrow">Small batch · Made near Kanha, Madhya Pradesh</p>

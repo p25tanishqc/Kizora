@@ -1,9 +1,10 @@
 // Ingredient library. Generated from the transformation report's verified ingredient map (1 Nov 2026).
 // Tradition and evidence are kept separate; no claim goes beyond the cited source.
-export interface Ingredient { slug: string; name: string; localName: string; listedAs: string; group: string; what: string; tradition: string; evidence: string; how: string; concerns: string; limits: string; products: string[]; source: { url: string; title: string } | null }
+export interface Ingredient { slug: string; name: string; localName: string; listedAs: string; group: string; what: string; tradition: string; evidence: string; how: string; concerns: string; limits: string; products: string[]; source: { url: string; title: string } | null; image?: string }
 export const ingredients: Ingredient[] = [
  {
   "slug": "aloe-vera",
+  "image": "/images/home/aloe-face.webp",
   "name": "Aloe vera",
   "localName": "Ghritkumari",
   "group": "Hydrating",

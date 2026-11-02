@@ -85,8 +85,9 @@ src/
   fonts/                  self-hosted woff2
 public/images/            all images used by the site (WebP)
 assets-source/
-  original-site/          the original product photos from kizoraskincare.com, one folder per product
-tools/images/originals.py turns those photos into the WebP files in public/images/products/
+  new-photos/             product photos used on the site (supplied 2 Nov 2026)
+  original-site/          earlier kizoraskincare.com gallery photos (not used)
+tools/images/enhance.py   HD upscale of new-photos into public/images/
 docs/                     change log, approvals, SEO/AEO notes, image prompts, report checklist
 ```
 
@@ -98,19 +99,12 @@ docs/                     change log, approvals, SEO/AEO notes, image prompts, r
 * Anything wrapped in `<Confirm>` is highlighted in review mode (switch it on at `/prototype-notes/`).
 
 ### Product photos
-The site uses Kizora's **original website photos**, unedited. `tools/images/originals.py` only
-flattens transparent PNGs onto white, widens each photo to a 4:5 frame by repeating its own edge
-background (nothing is cropped or cut out), and saves WebP files:
-`public/images/products/<slug>/1.webp … n.webp` (main photo first) and `card.webp`.
-Kits, rituals, collections and the homepage show these photos side by side with the `Mosaic`
-component, so there are no combined or generated images.
-
-```bash
-pip install pillow numpy opencv-python-headless
-python tools/images/originals.py
-```
-To add or reorder photos, put the file in `assets-source/original-site/<slug>/`, edit `ORDER` in the
-script and `PHOTO_COUNT` in `src/data/products.ts`, then rerun it.
+Each product has one photo, supplied by the founder team on 2 November 2026 (sources in
+`assets-source/new-photos/`). `tools/images/enhance.py` upscales them 4x with Real-ESRGAN and saves
+`public/images/products/<slug>/1.webp` (1600 x 2000) and `card.webp` (600 x 750), plus the homepage
+image, the share card and the aloe face image in `public/images/home/`. The file header explains setup.
+Kits, rituals and collections show the product photos side by side with the `Mosaic` component.
+The earlier website photos are kept, unused, in `assets-source/original-site/`.
 
 ---
 

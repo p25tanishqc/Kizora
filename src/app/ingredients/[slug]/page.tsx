@@ -24,7 +24,10 @@ export default function IngredientPage({ params }: { params: { slug: string } })
     <>
       <div className="wrap pt-6"><Crumbs items={[{ name: 'Ingredient library', href: '/ingredients/' }, { name: i.name }]} /></div>
       <section className="wrap grid gap-10 pb-10 pt-8 md:grid-cols-2 md:items-center md:gap-16">
-        <Mosaic slugs={i.products.slice(0, 2)} className="overflow-hidden rounded-[3px]" priority />
+        {i.image
+          ? /* eslint-disable-next-line @next/next/no-img-element */
+            <img src={i.image} alt={`${i.name} leaves held to the face`} width={1800} height={1500} fetchPriority="high" className="h-auto w-full rounded-[3px]" />
+          : <Mosaic slugs={i.products.slice(0, 2)} className="overflow-hidden rounded-[3px]" priority />}
         <div>
           <p className="eyebrow">{i.group}</p>
           <h1 className="mt-2 text-[48px] md:text-[60px]">{i.name}</h1>
