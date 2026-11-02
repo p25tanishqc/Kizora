@@ -85,9 +85,8 @@ src/
   fonts/                  self-hosted woff2
 public/images/            all images used by the site (WebP)
 assets-source/
-  photos-original/        Kizora's own product photos (captured from the live site)
-  cutouts/                transparent PNG cut-outs made from them
-tools/images/             Python pipeline that builds every product scene from the cut-outs
+  original-site/          the original product photos from kizoraskincare.com, one folder per product
+tools/images/originals.py turns those photos into the WebP files in public/images/products/
 docs/                     change log, approvals, SEO/AEO notes, image prompts, report checklist
 ```
 
@@ -96,20 +95,22 @@ docs/                     change log, approvals, SEO/AEO notes, image prompts, r
   the sum of their components, so they update automatically.
 * **Ritual steps**: `rituals` in `src/data/site.ts`.
 * **FAQ / articles / change log**: `src/data/site.ts`.
-* Anything wrapped in `<Confirm>` or listed in a product's `approvals` shows up under
-  "Show items to confirm".
+* Anything wrapped in `<Confirm>` is highlighted in review mode (switch it on at `/prototype-notes/`).
 
-### Rebuilding the product images
-Every product scene uses Kizora's real photo, cut out and placed **unaltered** (label, colour and
-proportions untouched) on a generated warm background with soft shadows.
+### Product photos
+The site uses Kizora's **original website photos**, unedited. `tools/images/originals.py` only
+flattens transparent PNGs onto white, widens each photo to a 4:5 frame by repeating its own edge
+background (nothing is cropped or cut out), and saves WebP files:
+`public/images/products/<slug>/1.webp … n.webp` (main photo first) and `card.webp`.
+Kits, rituals, collections and the homepage show these photos side by side with the `Mosaic`
+component, so there are no combined or generated images.
 
 ```bash
-pip install pillow numpy scipy rembg onnxruntime
-python tools/images/cut.py            # photos-original -> cutouts (milk bar mask is hand-made, see note in cut.py)
-python tools/images/build_images.py   # cutouts -> public/images/{products,kits,collections,rituals,home}
+pip install pillow numpy opencv-python-headless
+python tools/images/originals.py
 ```
-Each product page also shows the untouched studio photo as its second image.
-Prompts for the real photography and for AI-assisted backgrounds are in `docs/IMAGE_PROMPTS.md`.
+To add or reorder photos, put the file in `assets-source/original-site/<slug>/`, edit `ORDER` in the
+script and `PHOTO_COUNT` in `src/data/products.ts`, then rerun it.
 
 ---
 

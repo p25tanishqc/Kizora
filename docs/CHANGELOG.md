@@ -22,7 +22,7 @@ The second review (KZ-01 to KZ-18, 2 November 2026) is logged separately in [REV
 | K-14 | Homepage | Lists vetiver and ashwagandha, which no product contains. | Only ingredients in current products are shown. | `/` |
 | K-15 | About | No founder, place or process; one aloe card repeated four times. | Story of the founder, partner, Kanha unit and slow process. | `/about/` |
 | K-16 | Navigation | "Library" and "Journal" lead to Coming Soon. | "Ingredients" in the menu; Journal with real articles. | `/journal/` |
-| K-17 | Photography | Carton-first photos on plain white; generated lifestyle images. | Real product photos placed on warm, category-specific scenes; original studio shot kept in every gallery. | `/shop/` |
+| K-17 | Photography | Carton-first photos on plain white; generated lifestyle images. | The original kizoraskincare.com product photos, unedited (full gallery per product); kits and banners show them side by side. | `/shop/` |
 | K-18 | Speed | Mobile LCP 11.3 s; 7.4 MB homepage of PNGs. | Static pages, WebP images sized for display, lazy-loaded below the fold. | `/` |
 | K-19 | Brand | Kizora Skincare, Kizora Botanicals and Naturekit LLP all in use. | One name with a single legal line in the footer; Organization schema. | `/` |
 | K-20 | AEO | GPTBot blocked with no documented decision. | Decision listed for the founder; prototype itself is noindex. | `/prototype-notes/` |

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { allItems, bySlug, img, inr } from '@/data/products';
+import { allItems, bySlug, img, inr, photos } from '@/data/products';
 import { collectionBySlug } from '@/data/collections';
 import { ingredientBySlug } from '@/data/ingredients';
 import { Confirm, Crumbs, Faq, JsonLd, ProductGrid } from '@/components/ui';
@@ -21,12 +21,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   const col = collectionBySlug(p.collections[0]);
   const isKit = p.kind === 'kit';
   const images = isKit
-    ? [{ src: img(p.slug), alt: `${p.name}: ${p.components!.map(s => bySlug(s)!.name).join(' and ')}`, label: 'The kit' }]
-    : [
-        { src: img(p.slug, 'main'), alt: `${p.name}, ${p.size}`, label: 'Product' },
-        { src: img(p.slug, 'studio'), alt: `${p.name}, studio photo`, label: 'Studio photo' },
-        { src: img(p.slug, 'detail'), alt: `${p.name}, close up`, label: 'Close up' },
-      ];
+    ? p.components!.map(s => ({ src: img(s), alt: bySlug(s)!.name, label: bySlug(s)!.name }))
+    : photos(p.slug).map((src, i) => ({ src, alt: i === 0 ? p.name : `${p.name}, photo ${i + 1}`, label: `Photo ${i + 1}` }));
   const ings = p.ingredientSlugs.map(ingredientBySlug).filter(Boolean);
   return (
     <>

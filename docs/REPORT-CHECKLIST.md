@@ -9,7 +9,7 @@
 | D5 Link register (all P0/P1 links) | Done: every card and footer link goes to the right page; crawl test: 62 pages, 0 broken links |
 | D6 Ingredient library (12 profiles, INCI, tradition vs evidence, product map, filters) | Done (`/ingredients/`) |
 | D7 Morning and evening ritual pages + kits + gaps + measurement | Done; GA4 event names in `docs/SEO-AEO.md` |
-| D8 Photography plan | Product scenes built from real photos; studio photo kept; prompts and shot list in `docs/IMAGE_PROMPTS.md` |
+| D8 Photography plan | Original kizoraskincare.com product photos used unedited; shot list for new photography in `docs/IMAGE_PROMPTS.md` |
 | D9 SEO: titles, metas, H1, schema, URLs, sitemap | Done; redirect map in `docs/SEO-AEO.md` |
 | D10 AEO matrix | Answers live on FAQ, ingredient, ritual and journal pages |
 | D11 CRO: kits above ₹799, delivery meter, payment icons early, cross-sells, sticky mobile add-to-cart | Done |

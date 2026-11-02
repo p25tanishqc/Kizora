@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { bySlug, img, inr, type Product } from '@/data/products';
+import { bySlug, img, inr, partsOf, type Product } from '@/data/products';
 
 export function Confirm({ children, note = 'Needs founder approval' }: { children: React.ReactNode; note?: string }) {
   return <span className="needs-approval" title={note}>{children}</span>;
@@ -33,8 +33,11 @@ export function ProductCard({ p, note, priority = false }: { p: Product; note?: 
     <Link href={`/products/${p.slug}/`} className="group block">
       <div className="relative aspect-[4/5] overflow-hidden rounded-[3px] bg-paper">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={img(p.slug, 'card')} alt={p.size ? `${p.name}, ${p.size}` : p.name} loading={priority ? 'eager' : 'lazy'} width={600} height={750}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+        {p.kind === 'kit'
+          ? <div className="flex h-full items-center bg-white"><Mosaic slugs={p.components!} size="card" className="w-full transition-transform duration-700 group-hover:scale-[1.03]" /></div>
+          : /* eslint-disable-next-line @next/next/no-img-element */
+            <img src={img(p.slug, 'card')} alt={p.size ? `${p.name}, ${p.size}` : p.name} loading={priority ? 'eager' : 'lazy'} width={600} height={750}
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />}
         {p.kind === 'kit' && <span className="absolute left-3 top-3 rounded-sm bg-cream/90 px-2 py-1 text-[11px] font-medium uppercase tracking-[0.12em]">Kit</span>}
       </div>
       <div className="mt-3.5 md:flex md:items-start md:justify-between md:gap-3">
@@ -79,6 +82,20 @@ export function Faq({ items }: { items: { q: string; a: string; confirm?: boolea
           </summary>
           <p className="mt-3 max-w-3xl text-ink2">{f.confirm ? <Confirm>{f.a}</Confirm> : f.a}</p>
         </details>
+      ))}
+    </div>
+  );
+}
+
+const COLS = ['', 'grid-cols-1', 'grid-cols-2', 'grid-cols-3', 'grid-cols-4', 'grid-cols-5'];
+/** Original product photos side by side, uncropped (each photo is 4:5). Kits expand to their products. */
+export function Mosaic({ slugs, srcs, size = 'main', cols, className = '', priority = false }: { slugs?: string[]; srcs?: { src: string; alt: string }[]; size?: 'main' | 'card'; cols?: number; className?: string; priority?: boolean }) {
+  const list = srcs ?? Array.from(new Set((slugs ?? []).flatMap(partsOf))).map(s => ({ src: img(s, size), alt: bySlug(s)?.name ?? '' }));
+  return (
+    <div className={`grid gap-1.5 bg-white ${COLS[cols ?? Math.min(list.length, 5)]} ${className}`}>
+      {list.map(({ src, alt }) => (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img key={src} src={src} alt={alt} width={size === 'card' ? 600 : 1200} height={size === 'card' ? 750 : 1500} loading={priority ? 'eager' : 'lazy'} className="aspect-[4/5] w-full object-cover" />
       ))}
     </div>
   );

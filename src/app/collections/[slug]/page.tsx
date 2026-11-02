@@ -2,14 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { collections, collectionBySlug } from '@/data/collections';
-import { allItems, bySlug, inr } from '@/data/products';
-import { Crumbs, JsonLd, ProductGrid } from '@/components/ui';
+import { allItems, bySlug, img, inr } from '@/data/products';
+import { Crumbs, JsonLd, Mosaic, ProductGrid } from '@/components/ui';
 
 export const dynamicParams = false;
 export function generateStaticParams() { return collections.map(c => ({ slug: c.slug })); }
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const c = collectionBySlug(params.slug); if (!c) return {};
-  return { title: c.title, description: c.description, alternates: { canonical: `/collections/${c.slug}/` }, openGraph: { images: [c.image] } };
+  return { title: c.title, description: c.description, alternates: { canonical: `/collections/${c.slug}/` }, openGraph: { images: [img(allItems.find(p => p.collections.includes(c.slug))?.slug ?? 'pure-aloe-vera-gel')] } };
 }
 
 const GELS = ['pure-aloe-vera-gel', 'aloe-vera-gel-with-vitamin-e', 'aloe-vera-gel-with-rose-oil'];
@@ -37,8 +37,7 @@ export default function CollectionPage({ params }: { params: { slug: string } })
             <h1 className="mt-3 text-[46px] md:text-[60px]">{c.name}</h1>
             <p className="lead mt-5 max-w-md">{c.intro}</p>
           </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={c.image} alt={`${c.name} by Kizora`} className="-mx-[var(--gutter)] aspect-[16/10] w-[calc(100%+2*var(--gutter))] object-cover object-right md:mx-0 md:w-full" fetchPriority="high" />
+          <Mosaic slugs={items.filter(p => p.kind === 'product').slice(0, 3).map(p => p.slug).concat(items.some(p => p.kind === 'product') ? [] : items.slice(0, 1).map(p => p.slug)).slice(0, 3)} priority className="mb-8 overflow-hidden rounded-[3px] md:my-10" />
         </div>
       </section>
       <section className="wrap py-14">

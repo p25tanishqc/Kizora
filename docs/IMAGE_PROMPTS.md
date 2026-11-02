@@ -1,14 +1,11 @@
 # Image notes and prompts
 
-## What was done in this prototype
-* Source: Kizora's own product photos from kizoraskincare.com (`assets-source/photos-original/`).
-* Each product was cut out (`tools/images/cut.py`, rembg isnet model; the white Cow Milk bar was masked by hand)
-  and placed **unaltered** on a generated background (`tools/images/compose.py`): warm wall and surface,
-  paper grain, a soft botanical window-shadow, contact and wall shadows. Nothing on the pack was changed.
-* Category treatments: face (warm stone, aloe-leaf shadow), rose (blush), tea tree (clay), eucalyptus and moringa (sage),
-  bath & body (linen sand), lips (blush flat-lay), feet (butter), hair (deeper clay), morning (warm butter light),
-  evening (dusk with lamp glow), winter (soft linen).
-* Every product page keeps the original studio photo as image 2, so customers can see the unstyled pack.
+## What the site uses now
+* Kizora's original product photos from the kizoraskincare.com product galleries (downloaded 2 November 2026,
+  kept in `assets-source/original-site/`), shown unedited. Earlier cut-out scenes were removed at the founder's request.
+* Each photo is only widened to a 4:5 frame with its own background colour (no cropping) and saved as WebP
+  (`tools/images/originals.py`).
+* The foot butter "before and after" heel photo from the live site is not used, because it implies a result we cannot prove.
 
 ## Still needed: real photography (highest value)
 1. The unit near Kanha: wide shot, hands making soap, soaps curing on racks, moringa seeds drying in the sun.

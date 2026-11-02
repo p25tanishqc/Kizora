@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Confirm, Crumbs, ProductGrid } from '@/components/ui';
+import { Confirm, Crumbs, ProductGrid, Mosaic } from '@/components/ui';
 
 export const metadata: Metadata = {
   title: 'About Kizora | Made slowly, near Kanha',
@@ -23,8 +23,7 @@ export default function About() {
             </div>
           </div>
           <figure>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/collections/soaps-bathing-bars.webp" alt="Kizora natural soaps and ubtan bathing bar" className="aspect-[4/3.4] w-full rounded-[3px] object-cover object-[72%_60%]" />
+            <Mosaic slugs={['kuppaimeni-soap', 'hibiscus-rose-soap', 'tomato-extract-soap', 'ubtan-bathing-bar']} cols={2} size="card" className="overflow-hidden rounded-[3px]" />
             <figcaption className="mt-2 text-[13px] text-ink2">Our natural soaps and bathing bars.</figcaption>
           </figure>
         </div>

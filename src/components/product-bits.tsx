@@ -7,19 +7,18 @@ export function Gallery({ images }: { images: { src: string; alt: string; label:
   const [i, setI] = useState(0);
   return (
     <div>
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[3px] bg-paper">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-[3px] bg-white">
         {images.map((im, k) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img key={im.src} src={im.src} alt={im.alt} width={1200} height={1500}
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${k === i ? 'opacity-100' : 'opacity-0'}`} />
         ))}
-        <span className="absolute bottom-3 left-3 rounded-sm bg-cream/85 px-2 py-1 text-[11.5px] text-ink2">{images[i].label}</span>
       </div>
       {images.length > 1 && (
-        <div className="mt-3 flex gap-3" role="tablist" aria-label="Product images">
+        <div className="mt-3 flex flex-wrap gap-2.5" role="tablist" aria-label="Product images">
           {images.map((im, k) => (
             <button key={im.src} role="tab" aria-selected={k === i} aria-label={im.label} onClick={() => setI(k)}
-              className={`h-24 w-[76px] overflow-hidden rounded-[2px] border bg-paper ${k === i ? 'border-ink' : 'border-line opacity-80 hover:opacity-100'}`}>
+              className={`h-[90px] w-[72px] overflow-hidden rounded-[2px] border bg-white ${k === i ? 'border-ink' : 'border-line opacity-80 hover:opacity-100'}`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={im.src} alt="" className="h-full w-full object-cover" />
             </button>

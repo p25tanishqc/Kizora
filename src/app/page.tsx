@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { bySlug, inr } from '@/data/products';
 import { ingredients } from '@/data/ingredients';
 import { articles, rituals } from '@/data/site';
-import { Confirm, ProductGrid, SectionHead } from '@/components/ui';
+import { Confirm, ProductGrid, SectionHead, Mosaic } from '@/components/ui';
 
 export const metadata: Metadata = {
   title: 'Kizora Skincare | Slow-made skincare from near Kanha, MP',
@@ -26,12 +26,10 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-[#EFE8DC]">
-        <div className="relative flex flex-col md:block md:aspect-[2200/1100] md:max-h-[760px] md:w-full">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/home/hero.webp" alt="Kizora Kuppaimeni soap, Pure Aloe Vera Gel, Rose Hydrating Mist, moringa oil and ghee foot butter on a warm stone surface"
-            className="order-2 h-[300px] w-full object-cover object-[86%_70%] md:absolute md:inset-0 md:h-full md:object-[70%_72%]" fetchPriority="high" width={2200} height={1300} />
-          <div className="wrap relative z-10 order-1 pb-10 pt-10 md:flex md:h-full md:items-center md:py-0">
+      <section className="overflow-hidden bg-[#EFE8DC]">
+        <div className="wrap grid items-center gap-10 py-10 md:grid-cols-[1fr_1.15fr] md:gap-12 md:py-16">
+          <Mosaic slugs={['rose-hydrating-mist', 'pure-aloe-vera-gel', 'avocado-olive-ghee-foot-butter']} priority className="order-2 overflow-hidden rounded-[3px]" />
+          <div className="order-1">
             <div className="max-w-[520px]">
               <p className="eyebrow">Small batch · Made near Kanha, Madhya Pradesh</p>
               <h1 className="mt-5 text-[42px] leading-[1.05] md:text-[66px]">Slow-made care for everyday rituals.</h1>
@@ -63,8 +61,7 @@ export default function Home() {
         <div className="grid gap-6 lg:grid-cols-2">
           {[{ r: rituals.morning, k: mk, tone: 'bg-butter/50', btn: 'btn' }, { r: rituals.evening, k: ek, tone: 'bg-dusk text-cream', btn: 'btn-gold' }].map(({ r, k, tone, btn }) => (
             <article key={r.slug} className={`overflow-hidden rounded-[3px] ${tone}`}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={r.image} alt={`${r.title}: products`} loading="lazy" className="aspect-[3/2] w-full object-cover" width={1800} height={1200} />
+              <Mosaic slugs={r.steps.map(s => s.slug!).filter(Boolean).slice(0, 3)} size="card" />
               <div className="p-7 md:p-10">
                 <p className={`eyebrow ${r.slug === 'evening' ? 'text-gold' : ''}`}>{r.eyebrow}</p>
                 <h3 className={`mt-3 text-[30px] md:text-[36px] ${r.slug === 'evening' ? 'text-cream' : ''}`}>{r.slug === 'morning' ? 'Mist, hydrate, lips.' : 'Cleanse, mist, nourish.'}</h3>
@@ -124,8 +121,7 @@ export default function Home() {
           <Link href="/how-its-made/" className="btn-ghost mt-10">Read how it&apos;s made</Link>
         </div>
         <figure className="order-1 md:order-2">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/collections/soaps-bathing-bars.webp" alt="Kizora natural soaps and ubtan bathing bar" loading="lazy" className="aspect-[4/3.2] w-full rounded-[3px] object-cover object-[75%_60%]" />
+          <Mosaic slugs={['kuppaimeni-soap', 'hibiscus-rose-soap', 'tomato-extract-soap']} size="card" className="overflow-hidden rounded-[3px]" />
         </figure>
       </section>
 
@@ -163,8 +159,7 @@ export default function Home() {
       {/* WINTER */}
       <section className="bg-[#EAE0D4]">
         <div className="wrap grid items-center gap-10 py-16 md:grid-cols-2 md:py-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/kits/winter-night-care-set.webp" alt="Winter Night Care Set: Cow Milk Bathing Bar and Ghee Foot Butter" loading="lazy" className="aspect-[4/5] w-full object-cover md:max-h-[620px]" />
+          <Mosaic slugs={['winter-night-care-set']} className="overflow-hidden rounded-[3px] md:my-16" />
           <div className="md:py-20">
             <p className="eyebrow">For the colder months</p>
             <h2 className="mt-3 text-[34px] md:text-[44px]">The Winter Night Care Set.</h2>
@@ -195,8 +190,7 @@ export default function Home() {
           <div className="grid gap-10 md:grid-cols-3">
             {articles.map(a => (
               <Link key={a.slug} href={`/journal/${a.slug}/`} className="group">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={a.image} alt="" loading="lazy" className="aspect-[3/2] w-full rounded-[3px] object-cover" />
+                <Mosaic slugs={a.photos} size="card" className="overflow-hidden rounded-[3px]" />
                 <p className="mt-4 text-[12.5px] uppercase tracking-[0.14em] text-ink2">{a.read} read</p>
                 <h3 className="mt-2 text-[22px] group-hover:underline group-hover:decoration-gold group-hover:underline-offset-4">{a.title}</h3>
                 <p className="mt-2 text-[15px] text-ink2">{a.dek}</p>

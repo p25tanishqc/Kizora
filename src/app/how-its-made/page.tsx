@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Confirm, Crumbs } from '@/components/ui';
+import { Confirm, Crumbs, Mosaic } from '@/components/ui';
 
 export const metadata: Metadata = {
   title: "How it's made | Small-batch skincare near Kanha | Kizora",
@@ -23,8 +23,7 @@ export default function HowItsMade() {
         <div className="max-w-3xl pb-14 pt-10"><p className="eyebrow">Process</p><h1 className="mt-3 text-[48px] md:text-[66px]">Slow is the point.</h1>
           <p className="lead mt-6">Everything we sell is made at one small unit near Kanha National Park in Madhya Pradesh, run by our founder&apos;s partner, who is trained in botany, together with people from nearby villages.</p></div>
       </section>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/images/collections/soaps-bathing-bars.webp" alt="Kizora natural soaps" className="h-[340px] w-full object-cover object-[70%_60%] md:h-[520px]" />
+      <div className="wrap"><Mosaic slugs={['kuppaimeni-soap', 'hibiscus-rose-soap', 'tomato-extract-soap']} /></div>
       <section className="wrap max-w-[900px] py-16">
         <ol className="divide-y divide-line border-y border-line">
           {STEPS.map(([h, t, c], k) => (

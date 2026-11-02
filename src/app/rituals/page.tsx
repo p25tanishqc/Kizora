@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { bySlug, inr } from '@/data/products';
 import { rituals } from '@/data/site';
-import { Crumbs, ProductGrid } from '@/components/ui';
+import { Crumbs, ProductGrid, Mosaic } from '@/components/ui';
 
 export const metadata: Metadata = {
   title: 'Rituals: a simple morning and evening | Kizora',
@@ -26,8 +26,7 @@ export default function Rituals() {
           const r = rituals[w]; const k = bySlug(r.kit)!; const dark = w === 'evening';
           return (
             <Link key={w} href={`/rituals/${w}/`} className={`group overflow-hidden rounded-[3px] ${dark ? 'bg-dusk text-cream' : 'bg-butter/50'}`}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={r.image} alt="" className="aspect-[3/2] w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" />
+              <Mosaic slugs={r.steps.map(s => s.slug!).filter(Boolean).slice(0, 3)} size="card" />
               <div className="p-8">
                 <p className={`eyebrow ${dark ? '!text-gold' : ''}`}>{r.eyebrow}</p>
                 <h2 className={`mt-2 text-[34px] ${dark ? '!text-cream' : ''}`}>{r.title}</h2>

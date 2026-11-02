@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { bySlug, img, inr } from '@/data/products';
 import { rituals } from '@/data/site';
-import { Confirm, Crumbs, JsonLd } from './ui';
+import { Confirm, Crumbs, JsonLd, Mosaic } from './ui';
 import { AddKit, AddSmall } from './product-bits';
 
 export function RitualView({ which }: { which: 'morning' | 'evening' }) {
@@ -36,8 +36,7 @@ export function RitualView({ which }: { which: 'morning' | 'evening' }) {
               </div>
             )}
           </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={r.image} alt={`${r.title}: the products, together`} fetchPriority="high" width={1800} height={1200} className="-mx-[var(--gutter)] aspect-[3/2] w-[calc(100%+2*var(--gutter))] object-cover md:mx-0 md:w-full" />
+          <Mosaic slugs={r.steps.map(s => s.slug!).filter(Boolean).slice(0, 3)} priority className="mb-6 overflow-hidden rounded-[3px] md:my-12" />
         </div>
       </section>
 
@@ -84,8 +83,7 @@ export function RitualView({ which }: { which: 'morning' | 'evening' }) {
 
         <aside id="kit" className="scroll-mt-28 lg:sticky lg:top-28 lg:self-start">
           <div className="overflow-hidden rounded-[3px] bg-ink text-cream">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={img(kit.slug)} alt={`${kit.name}: ${kit.components!.map(s => bySlug(s)!.name).join(' and ')}`} loading="lazy" className="aspect-[4/3] w-full object-cover object-[50%_70%]" />
+            <Mosaic slugs={kit.components!} size="card" />
             <div className="p-7">
               <p className="eyebrow !text-gold">{which === 'morning' ? 'The kit · 2 essentials' : 'Option 1 · 2 products'}</p>
               <h2 className="mt-2 text-[28px] !text-cream">{kit.name}</h2>

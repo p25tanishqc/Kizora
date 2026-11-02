@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { articles } from '@/data/site';
-import { Crumbs, JsonLd, ProductGrid } from '@/components/ui';
+import { Crumbs, JsonLd, ProductGrid, Mosaic } from '@/components/ui';
 
 export const dynamicParams = false;
 export function generateStaticParams() { return articles.map(a => ({ slug: a.slug })); }
@@ -20,8 +20,7 @@ export default function Article({ params }: { params: { slug: string } }) {
         <h1 className="mt-3 text-[40px] leading-tight md:text-[54px]">{a.title}</h1>
         <p className="lead mt-5">{a.dek}</p>
       </div>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={a.image} alt="" className="wrap mt-10 aspect-[16/9] w-full max-w-[1100px] object-cover" />
+      <div className="wrap mt-10 max-w-[1100px]"><Mosaic slugs={a.photos} priority /></div>
       <div className="wrap prose-k mt-12 max-w-[700px]">
         {a.body.map((b, i) => <div key={i}>{b.h && <h2>{b.h}</h2>}<p>{b.p}</p></div>)}
       </div>
