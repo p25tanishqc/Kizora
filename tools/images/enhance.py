@@ -1,7 +1,6 @@
 """Kizora site images: the product photos supplied by the founder team, upscaled for HD.
 
-Source files: assets-source/new-photos/<slug>.png|.jpg|.jpeg (improved set of 7 Nov 2026, 820 to 1126 px wide;
-beetroot lip balm still uses the 2 Nov photo), Kizora_main_page_image.jpg, Kizora_face_image.jpg.
+Source files: assets-source/new-photos/<slug>.png|.jpg|.jpeg (improved set of 7 Nov 2026, 820 to 1126 px wide), Kizora_main_page_image.jpg, Kizora_face_image.jpg.
 A landscape photo (the ubtan bar, 3:2) is fitted to 4:5 without cutting any product: only plain margins are
 trimmed at the sides and the plain wall and floor are continued above and below (extend_45).
 Each photo is upscaled 4x with Real-ESRGAN (realesr-general-x4v3, BSD-3 licence, run through ONNX Runtime
