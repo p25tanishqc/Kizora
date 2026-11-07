@@ -8,3 +8,5 @@ next-env.d.ts
 .vercel
 preview/
 realesr-general-x4v3.onnx
+__pycache__/
+*.pyc
