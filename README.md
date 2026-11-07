@@ -85,7 +85,7 @@ src/
   fonts/                  self-hosted woff2
 public/images/            all images used by the site (WebP)
 assets-source/
-  new-photos/             product photos used on the site (supplied 2 Nov 2026)
+  new-photos/             product photos used on the site (supplied by the founder team)
   original-site/          earlier kizoraskincare.com gallery photos (not used)
 tools/images/enhance.py   HD upscale of new-photos into public/images/
 docs/                     change log, approvals, SEO/AEO notes, image prompts, report checklist
@@ -99,10 +99,11 @@ docs/                     change log, approvals, SEO/AEO notes, image prompts, r
 * Anything wrapped in `<Confirm>` is highlighted in review mode (switch it on at `/prototype-notes/`).
 
 ### Product photos
-Each product has one photo, supplied by the founder team on 2 November 2026 (sources in
-`assets-source/new-photos/`). `tools/images/enhance.py` upscales them 4x with Real-ESRGAN and saves
+Each product has one photo supplied by the founder team (improved set of 7 November 2026; the
+beetroot lip balm still uses the 2 November photo). Sources are in `assets-source/new-photos/`. `tools/images/enhance.py` upscales them 4x with Real-ESRGAN and saves
 `public/images/products/<slug>/1.webp` (1600 x 2000) and `card.webp` (600 x 750), plus the homepage
-image, the share card and the aloe face image in `public/images/home/`. The file header explains setup.
+image, the share card and the aloe face image in `public/images/home/` (with `--all`). The file header explains setup.
+The ubtan photo is landscape, so it is fitted to 4:5 by continuing its plain wall and floor; no product is cut.
 Kits, rituals and collections show the product photos side by side with the `Mosaic` component.
 The earlier website photos are kept, unused, in `assets-source/original-site/`.
 

@@ -7,3 +7,4 @@ next-env.d.ts
 .env*.local
 .vercel
 preview/
+realesr-general-x4v3.onnx

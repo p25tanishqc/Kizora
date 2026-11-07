@@ -1,6 +1,9 @@
-"""Kizora site images: the photos supplied by the founder team (2 Nov 2026), upscaled for HD.
+"""Kizora site images: the product photos supplied by the founder team, upscaled for HD.
 
-Source files: assets-source/new-photos/<slug>.jpeg (820 x 1024), Kizora_main_page_image.jpg, Kizora_face_image.jpg.
+Source files: assets-source/new-photos/<slug>.png|.jpg|.jpeg (improved set of 7 Nov 2026, 820 to 1126 px wide;
+beetroot lip balm still uses the 2 Nov photo), Kizora_main_page_image.jpg, Kizora_face_image.jpg.
+A landscape photo (the ubtan bar, 3:2) is fitted to 4:5 without cutting any product: only plain margins are
+trimmed at the sides and the plain wall and floor are continued above and below (extend_45).
 Each photo is upscaled 4x with Real-ESRGAN (realesr-general-x4v3, BSD-3 licence, run through ONNX Runtime
 on the CPU), blended 15% with a plain Lanczos upscale so natural texture stays, then resized and saved as WebP:
   public/images/products/<slug>/1.webp    1600 x 2000  (4:5, the product photo frame used across the site)
@@ -14,7 +17,8 @@ Setup (once):
   curl -LO https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesr-general-x4v3.pth
   python tools/images/enhance.py --build-model realesr-general-x4v3.pth   # writes realesr-general-x4v3.onnx
 Run:
-  python tools/images/enhance.py
+  python tools/images/enhance.py          # product photos
+  python tools/images/enhance.py --all    # also the homepage image, share card and aloe face image
 """
 import glob, os, pickle, sys, zipfile
 import numpy as np
@@ -85,14 +89,39 @@ def fit_45(im):
     th = round(w / 0.8); t = (h - th) // 2; return im.crop((0, t, w, t + th))
 
 
-def main(sess, ups=up4):
+def extend_45(img):
+    """Landscape photo -> 4:5 frame, keeping every product: trim plain side margins, continue wall and floor."""
+    import cv2
+    a = np.asarray(img.convert("RGB")).astype(np.float32); h, w = a.shape[:2]
+    a = a[:, int(w * 0.025):int(w * 0.975)]; w = a.shape[1]
+    H = round(w / 0.8); add = H - h; top = int(add * 0.62); bot = add - top
+    edge = lambda rows: cv2.GaussianBlur(rows.mean(axis=0)[None], (0, 0), sigmaX=90, sigmaY=0.1)[0]
+    ct, cb = edge(a[:140]), edge(a[-110:])
+    c = np.zeros((H, w, 3), np.float32)
+    c[:top] = ct[None] * (1 + 0.035 * np.linspace(1, 0, top, dtype=np.float32)[:, None, None])
+    c[top + h:] = cb[None] * (1 - 0.03 * np.linspace(0, 1, bot, dtype=np.float32)[:, None, None])
+    ft, fb = 170, 120; al = np.ones((h, 1, 1), np.float32)
+    al[:ft, 0, 0] = np.linspace(0, 1, ft) ** 1.5; al[h - fb:, 0, 0] = np.linspace(1, 0, fb) ** 1.5
+    plain = np.where(np.arange(h)[:, None, None] < h / 2, ct[None], cb[None])
+    c[top:top + h] = a * al + plain * (1 - al)
+    m = np.ones((H, 1, 1), np.float32); m[top + ft:top + h - fb] = 0
+    c = c + np.random.default_rng(1).normal(0, 1.4, c.shape).astype(np.float32) * m
+    return Image.fromarray(np.clip(c, 0, 255).astype(np.uint8))
+
+
+def main(sess, ups=up4, extras=False):
     os.makedirs(f"{OUT}/home", exist_ok=True)
-    for f in sorted(glob.glob(f"{SRC}/*.jpeg")):
-        slug = os.path.basename(f)[:-5]; d = f"{OUT}/products/{slug}"; os.makedirs(d, exist_ok=True)
+    for f in sorted(glob.glob(f"{SRC}/*")):
+        slug = os.path.basename(f).rsplit(".", 1)[0]
+        if slug.startswith("Kizora_"): continue
+        d = f"{OUT}/products/{slug}"; os.makedirs(d, exist_ok=True)
         for old in glob.glob(f"{d}/*.webp"): os.remove(old)
-        big = fit_45(ups(Image.open(f), sess))
+        src = Image.open(f).convert("RGB")
+        if src.width / src.height > 0.9: src = extend_45(src)
+        big = fit_45(ups(src, sess))
         finish(big, (1600, 2000)).save(f"{d}/1.webp", quality=88, method=6)
-        finish(big, (600, 750)).save(f"{d}/card.webp", quality=84, method=6); print(slug)
+        finish(big, (600, 750)).save(f"{d}/card.webp", quality=84, method=6); print(slug, flush=True)
+    if not extras: return
     hero = ups(Image.open(f"{SRC}/Kizora_main_page_image.jpg"), sess)
     hw = 2000; hh = round(hero.height * hw / hero.width)
     finish(hero, (hw, hh)).save(f"{OUT}/home/hero.webp", quality=88, method=6)
@@ -109,4 +138,4 @@ if __name__ == "__main__":
     if len(sys.argv) > 2 and sys.argv[1] == "--build-model":
         build_model(sys.argv[2]); sys.exit()
     import onnxruntime as ort
-    main(ort.InferenceSession(MODEL, providers=["CPUExecutionProvider"]))
+    main(ort.InferenceSession(MODEL, providers=["CPUExecutionProvider"]), extras="--all" in sys.argv)

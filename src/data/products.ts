@@ -464,7 +464,7 @@ export const kits: Product[] = [
 
 export const allItems: Product[] = [...products, ...kits];
 export const bySlug = (slug: string) => allItems.find(p => p.slug === slug);
-// Product photos supplied by the founder team (2 Nov 2026), upscaled for HD by tools/images/enhance.py:
+// Product photos supplied by the founder team (improved set, 7 Nov 2026), upscaled for HD by tools/images/enhance.py:
 // /images/products/<slug>/1.webp (1600 x 2000) and card.webp (600 x 750).
 export const PHOTO_COUNT: Record<string, number> = {};
 /** Products a slug stands for: a product is itself, a kit is its components. */

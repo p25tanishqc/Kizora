@@ -1,9 +1,11 @@
 # Image notes and prompts
 
 ## What the site uses now
-* One photo per product, supplied by the founder team on 2 November 2026 (`assets-source/new-photos/`),
-  plus a homepage group shot and an aloe face image. Each was checked against its product label and placed on that product.
-* The photos are 820 x 1024, so each is upscaled 4x with Real-ESRGAN and saved at 1600 x 2000 (`tools/images/enhance.py`).
+* One photo per product from the founder team's improved set (7 November 2026; beetroot lip balm still uses the
+  2 November photo), plus a homepage group shot and an aloe face image (`assets-source/new-photos/`).
+  Each was checked against its product label and placed on that product.
+* The photos are 820 to 1126 px wide, so each is upscaled 4x with Real-ESRGAN and saved at 1600 x 2000
+  (`tools/images/enhance.py`). The landscape ubtan photo is fitted to 4:5 by continuing its plain wall and floor.
 * The earlier website gallery photos are kept, unused, in `assets-source/original-site/`.
 
 ## Still needed: real photography (highest value)
